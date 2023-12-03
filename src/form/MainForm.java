@@ -4,21 +4,32 @@
  */
 package form;
 
+import components.LoginPanel;
+import components.TournamentsPanel;
 import controller.Controller;
-import domain.Administrator;
+import java.awt.CardLayout;
+import session.Session;
+import components.IView;
+import components.WelcomePanel;
+import utils.PanelNames;
 
 /**
  *
  * @author Gazi
  */
-public class MainForm extends javax.swing.JFrame {
+public class MainForm extends javax.swing.JFrame implements IView{
+
+    private CardLayout cardLayout;
+    private static Session activeSession;
 
     /**
-     * Creates new form LoginForm
+     * Creates new form MainForm2
      */
     public MainForm() {
         initComponents();
         setLocationRelativeTo(null);
+        populatePanel();
+        
     }
 
     /**
@@ -30,19 +41,78 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        loginPanel1 = new components.LoginPanel();
+        container = new javax.swing.JPanel();
+        loginPanel = new components.LoginPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         quizMenu = new javax.swing.JMenu();
+        viewQuizzes = new javax.swing.JMenuItem();
+        createQuiz = new javax.swing.JMenuItem();
+        searchQuiz = new javax.swing.JMenuItem();
         tournamentMenu = new javax.swing.JMenu();
+        viewTournaments = new javax.swing.JMenuItem();
+        createTournament = new javax.swing.JMenuItem();
+        searchTournament = new javax.swing.JMenuItem();
+        userMenu = new javax.swing.JMenu();
+        profile = new javax.swing.JMenuItem();
+        logout = new javax.swing.JMenuItem();
+        login = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
+
+        javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
+        container.setLayout(containerLayout);
+        containerLayout.setHorizontalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        containerLayout.setVerticalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         quizMenu.setText("Quiz");
+
+        viewQuizzes.setText("View Quizzes");
+        quizMenu.add(viewQuizzes);
+
+        createQuiz.setText("Create Quiz");
+        quizMenu.add(createQuiz);
+
+        searchQuiz.setText("Search Quiz");
+        quizMenu.add(searchQuiz);
+
         jMenuBar1.add(quizMenu);
 
         tournamentMenu.setText("Tournament");
+
+        viewTournaments.setText("View Tournaments");
+        tournamentMenu.add(viewTournaments);
+
+        createTournament.setText("Create Tournament");
+        tournamentMenu.add(createTournament);
+
+        searchTournament.setText("Search Tournament");
+        tournamentMenu.add(searchTournament);
+
         jMenuBar1.add(tournamentMenu);
+
+        userMenu.setText("User");
+
+        profile.setText("Profile");
+        userMenu.add(profile);
+
+        logout.setText("Log out");
+        userMenu.add(logout);
+
+        login.setText("Log In");
+        userMenu.add(login);
+
+        jMenuBar1.add(userMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -50,27 +120,96 @@ public class MainForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loginPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(container, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loginPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(container, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainForm().setVisible(true);
+            }
+        });
+    }
+
+    private void populatePanel() {
+        container.removeAll();
+        container.setLayout(new CardLayout());
+        container.add(new LoginPanel(), PanelNames.LOGIN_PANEL);
+        container.add(new WelcomePanel(), PanelNames.WELCOME_PANEL);
+        container.add(new TournamentsPanel(), PanelNames.VIEW_TOURNAMENTS_PANEL);
+        this.cardLayout = (CardLayout) container.getLayout();
+        cardLayout.show(container, PanelNames.LOGIN_PANEL);
+        Controller.getInstance().setCardLayout(cardLayout);
+        Controller.getInstance().setContainer(container);
+        if(activeSession==null){
+            profile.setVisible(false);
+            logout.setVisible(false);
+        }
+    }
+
+    public static Session getActiveSession() {
+        return activeSession;
+    }
+
+    public static void setActiveSession(Session aActiveSession) {
+        activeSession = aActiveSession;
+    }
+   
+
+    @Override
+    public void updateView() {
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel container;
+    private javax.swing.JMenuItem createQuiz;
+    private javax.swing.JMenuItem createTournament;
     private javax.swing.JMenuBar jMenuBar1;
-    private components.LoginPanel loginPanel1;
+    private javax.swing.JMenuItem login;
+    private components.LoginPanel loginPanel;
+    private javax.swing.JMenuItem logout;
+    private javax.swing.JMenuItem profile;
     private javax.swing.JMenu quizMenu;
+    private javax.swing.JMenuItem searchQuiz;
+    private javax.swing.JMenuItem searchTournament;
     private javax.swing.JMenu tournamentMenu;
+    private javax.swing.JMenu userMenu;
+    private javax.swing.JMenuItem viewQuizzes;
+    private javax.swing.JMenuItem viewTournaments;
     // End of variables declaration//GEN-END:variables
 }

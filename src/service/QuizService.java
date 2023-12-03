@@ -5,13 +5,24 @@
 package service;
 
 import domain.Quiz;
-import domain.Tournament;
+import java.util.List;
 
 /**
  *
  * @author Gazi
  */
-public interface CreateService {
+public interface QuizService {
+
     void createQuiz(Quiz quiz);
-    void createTournament(Tournament tournament);
+
+    void deleteQuiz(Quiz quiz);
+
+    List<Quiz> findQuiz(List<Quiz> quizzes, Object value);
+
+    List<Quiz> loadQuizzesList(List<Quiz> quizzes);
+
+    Quiz loadQuiz(Quiz quiz);
+
+    void updateQuiz(Quiz quiz);
+
 }

@@ -4,15 +4,16 @@
  */
 package service;
 
-import domain.Quiz;
-import domain.Tournament;
-import java.util.List;
+import javax.swing.JPanel;
+import components.IView;
 
 /**
  *
  * @author Gazi
  */
-public interface FindService {
-    List<Quiz> findQuiz(List<Quiz> quizzes, Object value);
-    List<Tournament> findTournament(List<Tournament> tournaments, Object value);
+public interface FormService {
+    void addForm(IView form);
+    void removeForm(IView form);
+    void setActivePanel(JPanel panel);
+    JPanel getActivePanel();
 }

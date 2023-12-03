@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package service.implementation;
+package service.impl;
 
 import connection.DBConnection;
 import domain.Administrator;
@@ -20,11 +20,11 @@ import session.SessionManager;
  *
  * @author Gazi
  */
-public class UserServiceImplementation implements UserService {
+public class UserServiceImpl implements UserService {
 
     private DBConnection dbConnection;
 
-    public UserServiceImplementation(DBConnection dbBroker) {
+    public UserServiceImpl(DBConnection dbBroker) {
         this.dbConnection = dbBroker;
     }
 
@@ -38,6 +38,8 @@ public class UserServiceImplementation implements UserService {
             while (rs.next()) {
                 if (rs.getString("password").equals(administrator.getPassword())) {
                     System.out.println("Uspešno ste se prijavili na sistem");
+                    administrator.setFirstname(rs.getString("firstname"));
+                    administrator.setLastname(rs.getString("lastname"));
                     administrator.setPassword(null);
                     String sessionId = SessionManager.createSession();
                     Session session = SessionManager.getSession(sessionId);

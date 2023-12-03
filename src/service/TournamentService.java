@@ -4,7 +4,6 @@
  */
 package service;
 
-import domain.Quiz;
 import domain.Tournament;
 import java.util.List;
 
@@ -12,9 +11,18 @@ import java.util.List;
  *
  * @author Gazi
  */
-public interface LoadService {
-    List<Quiz> loadQuizzesList(List<Quiz> quizzes);
-    Quiz loadQuiz(Quiz quiz);
+public interface TournamentService {
+
+    void createTournament(Tournament tournament);
+
+    void deleteTournament(Tournament tournament);
+
+    List<Tournament> findTournament(List<Tournament> tournaments, Object value);
+
     List<Tournament> loadTournamentsList(List<Tournament> tournaments);
+
     Tournament loadTournament(Tournament tournament);
+
+    void updateTournament(Tournament tournament);
+
 }

@@ -15,7 +15,6 @@ import form.MainForm;
  */
 public class Main {
     public static void main(String[] args) {
-        Controller controller = Controller.getInstance();
         new MainForm().setVisible(true);
     }
 }
