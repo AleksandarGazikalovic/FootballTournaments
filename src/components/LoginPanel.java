@@ -4,7 +4,7 @@
  */
 package components;
 
-import controller.Controller;
+import controller.SessionController;
 import domain.Administrator;
 import dto.DTO;
 import dto.LoginFailedDTO;
@@ -100,12 +100,12 @@ public class LoginPanel extends javax.swing.JPanel {
             administrator.setUsername(usernameInputField.getValue());
             administrator.setPassword(passwordInputField.getValue());
             
-            DTO dto = Controller.getInstance().login(administrator);
+            DTO dto = SessionController.getInstance().login(administrator);
             if(dto instanceof LoginSuccessDTO){
                 JOptionPane.showMessageDialog(this, ((LoginSuccessDTO) dto).getSession().getAttribute("user").toString());
                 MainForm.setActiveSession(((LoginSuccessDTO) dto).getSession());
-                Controller.getInstance().getCardLayout().show(Controller.getInstance().getContainer(), PanelNames.WELCOME_PANEL);
-                Controller.getInstance().setActivePanel(Controller.getInstance().getContainer());
+                //Controller.getInstance().getCardLayout().show(Controller.getInstance().getContainer(), PanelNames.WELCOME_PANEL);
+                //Controller.getInstance().setActivePanel(Controller.getInstance().getContainer());
             }
             else{
                 JOptionPane.showMessageDialog(this, ((LoginFailedDTO) dto).getErrorMessage());

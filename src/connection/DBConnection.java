@@ -4,7 +4,13 @@
  */
 package connection;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -12,28 +18,74 @@ import java.sql.*;
  */
 public class DBConnection {
 
-    private static DBConnection instance=null;
-    
+    private static DBConnection instance = null;
+    public Connection connection = null;
+
     private DBConnection() {
     }
-    
-    public static DBConnection getInstance(){
-        if (instance == null){
+
+    public static DBConnection getInstance() {
+        if (instance == null) {
             instance = new DBConnection();
+            instance.connect();
         }
         return instance;
     }
-    
-    public Connection connection = null;
-    public void connect(){
-        String url = "jdbc:mysql://localhost:3306/quiz_tournaments";
-        String user = "root";
-        String pass = "";
+
+    public void connect() {
         try {
+        Properties properties = new Properties();
+        properties.load(new FileInputStream("dbconfig.properties"));
+        String url = properties.getProperty("url");
+        String user = properties.getProperty("username");
+        String pass = properties.getProperty("password");
             connection = DriverManager.getConnection(url, user, pass);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error connection to database!");
+        }
+    }
+
+    public boolean executeUpdate(String query) {
+        Statement st = null;
+        boolean signal = false;
+        try {
+            st = connection.createStatement();
+            int rowcount = st.executeUpdate(query);
+            if (rowcount > 0) {
+                signal = true;
+            }
         } catch (SQLException ex) {
-            System.out.println("Greška prilikom konektovanja na bazu!");
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+            signal = false;
+        } finally {
+            close(null, st, null);
+        }
+        return signal;
+    }
+
+    public void close(Connection conn, Statement st, ResultSet rs) {
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
+        if (st != null) {
+            try {
+                st.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

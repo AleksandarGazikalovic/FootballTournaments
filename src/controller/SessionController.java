@@ -5,11 +5,12 @@
 package controller;
 
 import connection.DBConnection;
+import domain.Entity;
 import domain.Administrator;
 import dto.DTO;
 import dto.LoginSuccessDTO;
 import service.UserService;
-import service.impl.UserServiceImpl;
+import service.UserService;
 import session.SessionManager;
 
 /**
@@ -25,7 +26,7 @@ public class SessionController {
     public SessionController() {
         this.dbConnection = DBConnection.getInstance();
         dbConnection.connect();
-        this.userService = new UserServiceImpl(dbConnection);
+        this.userService = new UserService(dbConnection);
     }
 
     public static SessionController getInstance() {
@@ -38,6 +39,7 @@ public class SessionController {
     public DTO login(Administrator administrator) {
         return userService.login(administrator);
     }
-    
-    public void logout(){}
+
+    public void logout() {
+    }
 }

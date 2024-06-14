@@ -6,7 +6,6 @@ package form;
 
 import components.LoginPanel;
 import components.TournamentsPanel;
-import controller.Controller;
 import java.awt.CardLayout;
 import session.Session;
 import components.IView;
@@ -174,8 +173,8 @@ public class MainForm extends javax.swing.JFrame implements IView{
         container.add(new TournamentsPanel(), PanelNames.VIEW_TOURNAMENTS_PANEL);
         this.cardLayout = (CardLayout) container.getLayout();
         cardLayout.show(container, PanelNames.LOGIN_PANEL);
-        Controller.getInstance().setCardLayout(cardLayout);
-        Controller.getInstance().setContainer(container);
+        //Controller.getInstance().setCardLayout(cardLayout);
+        //Controller.getInstance().setContainer(container);
         if(activeSession==null){
             profile.setVisible(false);
             logout.setVisible(false);

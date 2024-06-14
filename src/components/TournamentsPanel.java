@@ -4,7 +4,6 @@
  */
 package components;
 
-import controller.Controller;
 import domain.Tournament;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -15,14 +14,14 @@ import model.TournamentTableModel;
  *
  * @author Gazi
  */
-public class TournamentsPanel extends javax.swing.JPanel implements IView{
+public class TournamentsPanel extends javax.swing.JPanel{
 
     /**
      * Creates new form TournamentsPanel
      */
     public TournamentsPanel() {
         initComponents();
-        populateTable();
+        //populateTable();
     }
 
     /**
@@ -68,17 +67,17 @@ public class TournamentsPanel extends javax.swing.JPanel implements IView{
     private javax.swing.JTable tournamentsTable;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void updateView() {
-        List<Tournament> tournaments=null;
-        tournamentsTable.setModel(new DefaultTableModel(Controller.getInstance().loadTournamentsList(tournaments).toArray(),tournaments.size()));
-    }
-
-    private void populateTable() {
-        tournamentsTable.removeAll();
-        List<Tournament> tournaments = null;
-        tournaments = Controller.getInstance().loadTournamentsList(tournaments);
-        TableModel tm = new TournamentTableModel(tournaments);
-        tournamentsTable.setModel(tm);
-    }
+//    @Override
+//    public void updateView() {
+//        List<Tournament> tournaments=null;
+//        tournamentsTable.setModel(new DefaultTableModel(Controller.getInstance().loadTournamentsList(tournaments).toArray(),tournaments.size()));
+//    }
+//
+//    private void populateTable() {
+//        tournamentsTable.removeAll();
+//        List<Tournament> tournaments = null;
+//        tournaments = Controller.getInstance().loadTournamentsList(tournaments);
+//        TableModel tm = new TournamentTableModel(tournaments);
+//        tournamentsTable.setModel(tm);
+//    }
 }
