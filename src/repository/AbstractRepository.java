@@ -24,8 +24,9 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
         this.dbConnection = DBConnection.getInstance();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public Entity getById(Entity entity) throws SQLException {
+    public T getById(T entity) throws SQLException {
         ResultSet rs = null;
         Statement st = null;
         String query = "SELECT * FROM " + entity.getClassName() + " WHERE " + entity.getWhereCondition();
@@ -35,7 +36,7 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
             rs = st.executeQuery(query);
             signal = rs.next();
             if (signal == true) {
-                entity = entity.getNewRecord(rs);
+                entity = (T) entity.getNewRecord(rs);
             } else {
                 entity = null;
             }

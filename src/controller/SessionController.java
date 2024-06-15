@@ -20,13 +20,8 @@ import session.SessionManager;
 public class SessionController {
 
     private static SessionController instance;
-    private final DBConnection dbConnection;
-    private final UserService userService;
 
     public SessionController() {
-        this.dbConnection = DBConnection.getInstance();
-        dbConnection.connect();
-        this.userService = new UserService(dbConnection);
     }
 
     public static SessionController getInstance() {
@@ -36,10 +31,4 @@ public class SessionController {
         return instance;
     }
 
-    public DTO login(Administrator administrator) {
-        return userService.login(administrator);
-    }
-
-    public void logout() {
-    }
 }

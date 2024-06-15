@@ -21,35 +21,4 @@ import session.SessionManager;
  */
 public class UserService {
 
-    private DBConnection dbConnection;
-
-    public UserService(DBConnection dbBroker) {
-        this.dbConnection = dbBroker;
-    }
-
-    
-    public DTO login(Administrator administrator) {
-        try {
-            String query = "SELECT * FROM administrator WHERE username=?";
-            PreparedStatement statement = dbConnection.connection.prepareStatement(query);
-            statement.setString(1, administrator.getUsername());
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                if (rs.getString("password").equals(administrator.getPassword())) {
-                    System.out.println("Uspešno ste se prijavili na sistem");
-                    administrator.setFirstname(rs.getString("firstname"));
-                    administrator.setLastname(rs.getString("lastname"));
-                    administrator.setPassword(null);
-                    String sessionId = SessionManager.createSession();
-                    Session session = SessionManager.getSession(sessionId);
-                    session.setAttribute("user", administrator);
-                    return new LoginSuccessDTO(session);
-                }
-            }
-            return new LoginFailedDTO("Sistem ne može da pronađe administratora na osnovu unetih podataka");
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return new LoginFailedDTO("Sistem ne može da pronađe administratora na osnovu unetih podataka");
-        }
-    }
 }

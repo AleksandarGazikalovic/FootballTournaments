@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface RepositoryInterface<T extends Entity> {
 
-    public Entity getById(Entity entity) throws SQLException;
+    public T getById(T entity) throws SQLException;
 
     public List<T> getAll(T entity) throws SQLException;
 

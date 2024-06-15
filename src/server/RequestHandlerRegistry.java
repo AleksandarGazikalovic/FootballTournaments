@@ -4,6 +4,7 @@
  */
 package server;
 
+import controller.AuthenticationController;
 /**
  *
  * @author Gazi
@@ -53,8 +54,7 @@ public class RequestHandlerRegistry {
 
     private static RequestHandler createLoginHandler() {
         return (request, response) -> {
-            Administrator admin = (Administrator) request.getData();
-            response.setData(admin);
+            AuthenticationController.getInstance().login((Administrator) request.getData());
         };
     }
 

@@ -4,6 +4,7 @@
  */
 package controller;
 
+import domain.Administrator;
 import domain.Entity;
 import domain.Quiz;
 import domain.Tournament;
@@ -25,6 +26,7 @@ public class FrontController {
         // Register controllers
         controllers.put(Tournament.class, TournamentController.getInstance());
         controllers.put(Quiz.class, QuizController.getInstance());
+        controllers.put(Administrator.class, AuthenticationController.getInstance());
     }
 
     public static FrontController getInstance() {
@@ -40,12 +42,10 @@ public class FrontController {
         if (controller == null) {
             throw new IllegalArgumentException("Controller not found for class: " + className.getName());
         }
-        System.out.println("vrati controller");
         return (AbstractController<Entity>) controller;
     }
 
     public <T extends Entity> void add(T entity) {
-        System.out.println("sacuvaj");
         getController(entity.getClass()).save(entity);
     }
 
