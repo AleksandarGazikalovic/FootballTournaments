@@ -11,8 +11,23 @@ package session;
 import java.util.HashMap;
 import java.util.Map;
 
+import service.AuthenticationService;
+
 public class SessionManager {
-    private static final Map<String, Session> sessions = new HashMap<>();
+
+    private static SessionManager instance;
+    private static Map<String, Session> sessions;
+
+    private SessionManager() {
+        sessions = new HashMap<>();
+    }
+
+    public static SessionManager getInstance() {
+        if (instance == null) {
+            instance = new SessionManager();
+        }
+        return instance;
+    }
 
     public static String createSession() {
         String sessionId = generateSessionId();
@@ -33,4 +48,3 @@ public class SessionManager {
         return Long.toHexString(Double.doubleToLongBits(Math.random()));
     }
 }
-
