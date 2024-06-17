@@ -1,6 +1,5 @@
 package server;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -12,7 +11,6 @@ import requests.ResponseStatus;
 public class ClientHandler implements Runnable {
 
     private final Socket clientSocket;
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     public ClientHandler(Socket clientSocket) {
         this.clientSocket = clientSocket;
@@ -21,12 +19,11 @@ public class ClientHandler implements Runnable {
     @Override
     public void run() {
         try (
-                ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-                ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())) {
-            String jsonRequest = (String) in.readObject();
+                 ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());  ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())) {
+            Request request = (Request) in.readObject();
 
-            String jsonResponse = handleRequestAsJson(jsonRequest);
-            out.writeObject(jsonResponse);
+            Response response = handleRequest(request);
+            out.writeObject(response);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -38,11 +35,10 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private Response handleRequest(String jsonRequest) {
+    private Response handleRequest(Request request) {
+
         Response response = new Response(null, null, ResponseStatus.Success);
         try {
-            Request request = objectMapper.readValue(jsonRequest, Request.class);
-
             RequestHandler handler = RequestHandlerRegistry.getHandler(request.getRequestType());
             if (handler != null) {
                 handler.handle(request, response);
@@ -56,16 +52,6 @@ public class ClientHandler implements Runnable {
             response.setException(e);
         }
         return response;
-    }
-
-    private String handleRequestAsJson(String jsonRequest) {
-        Response response = handleRequest(jsonRequest);
-        try {
-            return objectMapper.writeValueAsString(response);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "{\"responseStatus\":\"Error\",\"exception\":\"" + e.getMessage() + "\"}";
-        }
     }
 
 }

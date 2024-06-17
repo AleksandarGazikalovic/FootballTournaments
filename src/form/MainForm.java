@@ -4,16 +4,12 @@
  */
 package form;
 
-import components.LoginPanel;
-import components.TournamentsPanel;
 import java.awt.CardLayout;
 import session.Session;
 import components.IView;
 import components.SettingsPanel;
 import components.StartPanel;
-import components.WelcomePanel;
 import controller.PanelController;
-import javax.swing.JPanel;
 import utils.PanelNames;
 
 /**
