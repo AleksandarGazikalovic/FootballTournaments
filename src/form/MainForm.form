@@ -2,71 +2,20 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+    <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="quizMenu">
+        <Menu class="javax.swing.JMenu" name="connectionMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Quiz"/>
+            <Property name="text" type="java.lang.String" value="Connection"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="viewQuizzes">
+            <MenuItem class="javax.swing.JMenuItem" name="dbConfigurationMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="View Quizzes"/>
+                <Property name="text" type="java.lang.String" value="Database configuration"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="createQuiz">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Create Quiz"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="searchQuiz">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Search Quiz"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="tournamentMenu">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Tournament"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="viewTournaments">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="View Tournaments"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="createTournament">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Create Tournament"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="searchTournament">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Search Tournament"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="userMenu">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="User"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="profile">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Profile"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="logout">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Log out"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="login">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Log In"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dbConfigurationMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -75,9 +24,15 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[600, 400]"/>
+    </Property>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[600, 400]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -111,26 +66,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="loginPanel" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace min="0" pref="600" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
-                  <Component id="loginPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace min="0" pref="377" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
-      <SubComponents>
-        <Component class="components.LoginPanel" name="loginPanel">
-        </Component>
-      </SubComponents>
     </Container>
   </SubComponents>
 </Form>

@@ -18,4 +18,6 @@ public class PanelNames {
     public static final String VIEW_QUIZ_PANEL = "VIEW_QUIZ_PANEL";
     public static final String CREATE_QUIZ_PANEL = "CREATE_QUIZ_PANEL";
     public static final String FIND_QUIZ_PANEL = "FIND_QUIZ_PANEL";
+    public static final String DATABASE_SETTINGS_PANEL = "DATABASE_SETTINGS_PANEL";
+    public static final String START_SERVER_PANEL = "START_SERVER_PANEL";
 }
