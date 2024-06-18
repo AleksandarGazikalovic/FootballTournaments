@@ -20,9 +20,9 @@ public interface RepositoryInterface<T extends Entity> {
 
     public List<T> findBy(Entity entity, String where) throws SQLException;
 
-    boolean save(Entity entity) throws SQLException;
+    Long save(Entity entity) throws SQLException;
 
-    boolean update(Entity entity) throws SQLException;
+    Long update(Entity entity) throws SQLException;
 
-    boolean delete(Entity entity) throws SQLException;
+    Long delete(Entity entity) throws SQLException;
 }

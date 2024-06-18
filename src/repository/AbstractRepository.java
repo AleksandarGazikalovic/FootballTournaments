@@ -91,14 +91,14 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
     }
 
     @Override
-    public boolean save(Entity entity) throws SQLException {
+    public Long save(Entity entity) throws SQLException {
         String query = "INSERT INTO " + entity.getClassName() + " VALUES (" + entity.getAtrValue() + ")";
         System.out.println(query);
         return dbConnection.executeUpdate(query);
     }
 
     @Override
-    public boolean update(Entity entity) throws SQLException {
+    public Long update(Entity entity) throws SQLException {
         String query = "UPDATE " + entity.getClassName() + " SET " + entity.setAtrValue() + " WHERE "
                 + entity.getWhereCondition();
         System.out.println(query);
@@ -106,7 +106,7 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
     }
 
     @Override
-    public boolean delete(Entity entity) throws SQLException {
+    public Long delete(Entity entity) throws SQLException {
         String query = "DELETE FROM " + entity.getClassName() + " WHERE " + entity.getWhereCondition();
         System.out.println(query);
         return dbConnection.executeUpdate(query);
