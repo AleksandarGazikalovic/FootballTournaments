@@ -76,4 +76,9 @@ public class QuizController implements AbstractController<Quiz> {
         return null;
     }
 
+    @Override
+    public Quiz get(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

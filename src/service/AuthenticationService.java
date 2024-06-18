@@ -4,9 +4,11 @@ import java.sql.SQLException;
 import org.mindrot.jbcrypt.BCrypt;
 import domain.Administrator;
 import repository.AuthenticationRepository;
+import session.Session;
 import session.SessionManager;
 
 public class AuthenticationService {
+
     private static AuthenticationService instance;
     private final SessionManager sessionManager;
     private final AuthenticationRepository authenticationRepository;
@@ -46,12 +48,19 @@ public class AuthenticationService {
 
         if (BCrypt.checkpw(administrator.getPassword(), foundAdmin.getPassword())) {
             administrator = foundAdmin;
-            // sessionManager.createSession(administrator);
             administrator.setPassword(null);
             return administrator;
         }
 
         return null;
+    }
+
+    public Administrator getLoggedInUser(String sessionId) {
+        return SessionManager.getInstance().getSession(sessionId).getUser();
+    }
+
+    public void logout(String sessionId) {
+        SessionManager.getInstance().invalidateSession(sessionId);
     }
 
 }

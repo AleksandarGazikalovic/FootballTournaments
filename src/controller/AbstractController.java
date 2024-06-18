@@ -13,12 +13,14 @@ import java.util.List;
  */
 public interface AbstractController<T extends Entity> {
 
-    public abstract void save(T entity);
+    public abstract void save(T entity) throws Exception;
 
-    public abstract void update(T entity);
+    public abstract void update(T entity) throws Exception;
 
-    public abstract void delete(T entity);
+    public abstract void delete(T entity) throws Exception;
 
-    public abstract List<T> getAll();
+    public abstract List<T> getAll() throws Exception;
+    
+    public abstract T get(Long id) throws Exception;
 
 }

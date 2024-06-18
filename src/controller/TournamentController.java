@@ -87,4 +87,9 @@ public class TournamentController implements AbstractController<Tournament> {
         return null;
     }
 
+    @Override
+    public Tournament get(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

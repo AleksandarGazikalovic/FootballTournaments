@@ -4,36 +4,42 @@
  */
 package session;
 
-import java.util.HashMap;
-import java.util.Map;
+import domain.Administrator;
 
 /**
  *
  * @author Gazi
  */
 public class Session {
-    private final String sessionId;
-    private final Map<String, Object> attributes = new HashMap<>();
+    private String sessionId;
+    private Administrator user;
+    private long creationTime;
+    private long lastAccessedTime;
 
-    public Session(String sessionId) {
+    public Session(String sessionId, Administrator user) {
         this.sessionId = sessionId;
+        this.user = user;
+        this.creationTime = System.currentTimeMillis();
+        this.lastAccessedTime = System.currentTimeMillis();
     }
 
     public String getSessionId() {
         return sessionId;
     }
 
-    public void setAttribute(String key, Object value) {
-        attributes.put(key, value);
+    public Administrator getUser() {
+        return user;
     }
 
-    public Object getAttribute(String key) {
-        return attributes.get(key);
+    public long getCreationTime() {
+        return creationTime;
     }
 
-    public void removeAttribute(String key) {
-        attributes.remove(key);
+    public long getLastAccessedTime() {
+        return lastAccessedTime;
     }
 
+    public void setLastAccessedTime(long lastAccessedTime) {
+        this.lastAccessedTime = lastAccessedTime;
+    }
 }
-   

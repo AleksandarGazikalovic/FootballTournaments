@@ -7,10 +7,13 @@ import java.net.Socket;
 import requests.Request;
 import requests.Response;
 import requests.ResponseStatus;
+import session.SessionManager;
 
 public class ClientHandler implements Runnable {
 
     private final Socket clientSocket;
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
 
     public ClientHandler(Socket clientSocket) {
         this.clientSocket = clientSocket;
@@ -18,17 +21,29 @@ public class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        try (
-                 ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());  ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())) {
-            Request request = (Request) in.readObject();
+        try {
+            out = new ObjectOutputStream(clientSocket.getOutputStream());
+            in = new ObjectInputStream(clientSocket.getInputStream());
 
-            Response response = handleRequest(request);
-            out.writeObject(response);
+            while (!clientSocket.isClosed()) {
+                Request request = (Request) in.readObject();
+                Response response = handleRequest(request);
+                out.writeObject(response);
+                out.flush();
+            }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {
-                clientSocket.close();
+                if (in != null) {
+                    in.close();
+                }
+                if (out != null) {
+                    out.close();
+                }
+                if (clientSocket != null && !clientSocket.isClosed()) {
+                    clientSocket.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -40,14 +55,17 @@ public class ClientHandler implements Runnable {
         Response response = new Response(null, null, ResponseStatus.Success);
         try {
             RequestHandler handler = RequestHandlerRegistry.getHandler(request.getRequestType());
-            if (handler != null) {
-                handler.handle(request, response);
-            } else {
-                response.setResponseStatus(ResponseStatus.Error);
-                response.setException(
-                        new UnsupportedOperationException("Unsupported operation: " + request.getRequestType()));
+            if (SessionManager.getInstance().isSessionValid(request)) {
+                if (handler != null) {
+                    handler.handle(request, response);
+                } else {
+                    response.setResponseStatus(ResponseStatus.Error);
+                    response.setException(
+                            new UnsupportedOperationException("Unsupported operation: " + request.getRequestType()));
+                }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             response.setResponseStatus(ResponseStatus.Error);
             response.setException(e);
         }

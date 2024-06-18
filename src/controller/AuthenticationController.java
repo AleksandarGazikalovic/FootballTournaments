@@ -1,14 +1,12 @@
 package controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import domain.Administrator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import service.AuthenticationService;
 
 public class AuthenticationController implements AbstractController<Administrator> {
+
     private static AuthenticationController instance;
     private final AuthenticationService authenticationService;
 
@@ -23,43 +21,44 @@ public class AuthenticationController implements AbstractController<Administrato
         return instance;
     }
 
-    public Administrator login(Administrator administrator) {
-        try {
+    public Administrator login(Administrator administrator) throws Exception{
             return authenticationService.login(administrator);
-        } catch (SQLException ex) {
-            Logger.getLogger(AuthenticationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
     }
 
-    public void logout() {
-        // sessionManager.invalidateSession();
+    public void logout(String sessionId) throws Exception{
+        authenticationService.logout(sessionId);
     }
 
     @Override
-    public void save(Administrator administrator) {
-        try {
+    public void save(Administrator administrator) throws Exception{
             authenticationService.register(administrator);
-        } catch (SQLException ex) {
-            Logger.getLogger(AuthenticationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     @Override
-    public void update(Administrator entity) {
+    public void update(Administrator entity) throws Exception{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
     @Override
-    public void delete(Administrator entity) {
+    public void delete(Administrator entity) throws Exception{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     @Override
-    public List<Administrator> getAll() {
+    public List<Administrator> getAll() throws Exception{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+    }
+
+    @Override
+    public Administrator get(Long id) throws Exception{
+        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+
+    }
+
+    public Administrator getLoggedInUser(String sessionId) {
+        return authenticationService.getLoggedInUser(sessionId);
     }
 }

@@ -14,9 +14,15 @@ import domain.Administrator;
 import domain.Entity;
 import java.util.HashMap;
 import java.util.Map;
+import requests.Request;
 import requests.RequestType;
+import requests.Response;
+import requests.ResponseStatus;
+import session.Session;
+import session.SessionManager;
 
 public class RequestHandlerRegistry {
+
     private static final Map<RequestType, RequestHandler> handlers = new HashMap<>();
 
     static {
@@ -25,6 +31,8 @@ public class RequestHandlerRegistry {
         handlers.put(RequestType.DELETE, createDeleteHandler());
         handlers.put(RequestType.GET_ALL, createFindAllHandler());
         handlers.put(RequestType.LOGIN, createLoginHandler());
+        handlers.put(RequestType.LOGGED_IN, createGetLoggedInHandler());
+        handlers.put(RequestType.LOG_OUT, createLogOutHandler());
     }
 
     private static RequestHandler createSaveHandler() {
@@ -54,11 +62,31 @@ public class RequestHandlerRegistry {
 
     private static RequestHandler createLoginHandler() {
         return (request, response) -> {
-            AuthenticationController.getInstance().login((Administrator) request.getData());
+            Administrator admin = AuthenticationController.getInstance().login((Administrator) request.getData());
+            System.out.println("nesto");
+            if (admin != null) {
+                response.setData(admin);
+                Session session = SessionManager.getInstance().createSession(admin);
+                response.setSessionToken(session.getSessionId());
+            }
+        };
+    }
+
+    private static RequestHandler createGetLoggedInHandler() {
+        return (request, response) -> {
+            Administrator admin = AuthenticationController.getInstance().getLoggedInUser(request.getSessionToken());
+            response.setData(admin);
+        };
+    }
+
+    private static RequestHandler createLogOutHandler() {
+        return (request, response) -> {
+            AuthenticationController.getInstance().logout(request.getSessionToken());
         };
     }
 
     public static RequestHandler getHandler(RequestType requestType) {
         return handlers.get(requestType);
     }
+
 }

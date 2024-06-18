@@ -8,43 +8,65 @@ package session;
  *
  * @author Gazi
  */
+import domain.Administrator;
 import java.util.HashMap;
 import java.util.Map;
-
-import service.AuthenticationService;
+import java.util.UUID;
+import requests.Request;
+import requests.RequestType;
+import requests.Response;
+import requests.ResponseStatus;
 
 public class SessionManager {
 
     private static SessionManager instance;
-    private static Map<String, Session> sessions;
+    private Map<String, Session> sessions = new HashMap<>();
 
     private SessionManager() {
-        sessions = new HashMap<>();
     }
 
-    public static SessionManager getInstance() {
+    public static synchronized SessionManager getInstance() {
         if (instance == null) {
             instance = new SessionManager();
         }
         return instance;
     }
 
-    public static String createSession() {
-        String sessionId = generateSessionId();
-        Session session = new Session(sessionId);
+    public Session createSession(Administrator admin) {
+        String sessionId = UUID.randomUUID().toString();
+        Session session = new Session(sessionId, admin);
         sessions.put(sessionId, session);
-        return sessionId;
+        return session;
     }
 
-    public static Session getSession(String sessionId) {
-        return sessions.get(sessionId);
+    public Session getSession(String sessionId) {
+        Session session = sessions.get(sessionId);
+        if (session != null) {
+            session.setLastAccessedTime(System.currentTimeMillis());
+        }
+        return session;
     }
 
-    public static void removeSession(String sessionId) {
+    public void invalidateSession(String sessionId) {
         sessions.remove(sessionId);
+        System.out.println("Session with id: " + sessionId + "invalidated");
     }
 
-    private static String generateSessionId() {
-        return Long.toHexString(Double.doubleToLongBits(Math.random()));
+    public boolean isValidSession(String sessionId) {
+        return sessions.containsKey(sessionId);
+    }
+
+    public boolean isSessionValid(Request request) throws Exception {
+        if (request.getRequestType() == RequestType.LOGIN
+                || (request.getRequestType() == RequestType.ADD && request.getData() instanceof Administrator)) {
+            return true;
+        } else {
+            String sessionToken = request.getSessionToken();
+            if (SessionManager.getInstance().isValidSession(sessionToken)) {
+                return true;
+            } else {
+                throw new Exception("Invalid session");
+            }
+        }
     }
 }
