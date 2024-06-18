@@ -67,9 +67,9 @@ public class QuizController implements AbstractController<Quiz> {
     }
 
     @Override
-    public List<Quiz> getAll() {
+    public List<Quiz> getAll(Quiz quiz) {
         try {
-            return quizService.loadQuizzesList(new Quiz());
+            return quizService.loadQuizzesList(quiz);
         } catch (SQLException ex) {
             Logger.getLogger(QuizController.class.getName()).log(Level.SEVERE, null, ex);
         }

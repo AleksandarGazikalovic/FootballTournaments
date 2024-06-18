@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import requests.Response;
 import service.TournamentService;
 
 /**
@@ -78,9 +77,9 @@ public class TournamentController implements AbstractController<Tournament> {
     }
 
     @Override
-    public List<Tournament> getAll() {
+    public List<Tournament> getAll(Tournament tournament) {
         try {
-            return tournamentService.loadTournamentsList(new Tournament());
+            return tournamentService.loadTournamentsList(tournament);
         } catch (SQLException ex) {
             Logger.getLogger(TournamentController.class.getName()).log(Level.SEVERE, null, ex);
         }

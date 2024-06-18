@@ -53,7 +53,7 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
     public List<T> getAll(Entity entity) throws SQLException {
         ResultSet rs = null;
         Statement st = null;
-        String query = "SELECT * FROM " + entity.getClassName();
+        String query = "SELECT * FROM " + entity.getClassName()+ " " + entity.join();
         List<T> ls = new ArrayList<>();
         try {
             st = dbConnection.connection.createStatement();

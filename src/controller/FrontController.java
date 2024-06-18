@@ -45,20 +45,20 @@ public class FrontController {
         return (AbstractController<Entity>) controller;
     }
 
-    public <T extends Entity> void add(T entity) {
+    public <T extends Entity> void add(T entity) throws Exception {
         getController(entity.getClass()).save(entity);
     }
 
-    public <T extends Entity> void update(T entity) {
+    public <T extends Entity> void update(T entity) throws Exception {
         getController(entity.getClass()).update(entity);
     }
 
-    public <T extends Entity> void delete(T entity) {
+    public <T extends Entity> void delete(T entity) throws Exception {
         getController(entity.getClass()).delete(entity);
     }
 
-    public <T extends Entity> List<Entity> getAll(Class<T> className) {
-        return getController(className).getAll();
+    public <T extends Entity> List<Entity> getAll(T entity) throws Exception {
+        return getController(entity.getClass()).getAll(entity);
     }
 
 }

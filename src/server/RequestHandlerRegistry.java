@@ -55,8 +55,7 @@ public class RequestHandlerRegistry {
 
     private static RequestHandler createFindAllHandler() {
         return (request, response) -> {
-            Class<? extends Entity> className = ((Entity) request.getData()).getClass();
-            response.setData(FrontController.getInstance().getAll(className));
+            response.setData(FrontController.getInstance().getAll((Entity) request.getData()));
         };
     }
 

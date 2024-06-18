@@ -47,7 +47,7 @@ public class AuthenticationController implements AbstractController<Administrato
     }
 
     @Override
-    public List<Administrator> getAll() throws Exception{
+    public List<Administrator> getAll(Administrator entity) throws Exception{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAll'");
     }
