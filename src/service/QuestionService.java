@@ -5,7 +5,6 @@
 package service;
 
 import domain.Question;
-import domain.Quiz;
 import java.sql.SQLException;
 import java.util.List;
 import repository.QuestionRepository;
@@ -15,26 +14,30 @@ import repository.QuestionRepository;
  * @author Gazi
  */
 public class QuestionService {
-    
+
     private static QuestionService instance;
     private final QuestionRepository questionRepository;
-    
+
     private QuestionService() {
         this.questionRepository = QuestionRepository.getInstance();
     }
-    
+
     public static QuestionService getInstance() {
         if (instance == null) {
             instance = new QuestionService();
         }
         return instance;
     }
-    
-    public void createQuestion(Quiz quiz) throws SQLException {
-        List<Question> questions = quiz.getQuestions();
-        for (int i = 0; i < questions.size(); i++) {
-            questions.get(i).setQuiz(quiz);
-            questionRepository.save(questions.get(i));
-        }
+
+    public void createQuestion(Question question) throws SQLException {
+        questionRepository.save(question);
+    }
+
+    public void updateQuestion(Question question) throws SQLException {
+        questionRepository.update(question);
+    }
+
+    public List<Question> loadQuizQuestions(Question question) throws SQLException {
+        return questionRepository.findBy(question, question.getNewKey_Where());
     }
 }

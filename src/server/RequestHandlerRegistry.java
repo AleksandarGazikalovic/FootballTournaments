@@ -14,10 +14,7 @@ import domain.Administrator;
 import domain.Entity;
 import java.util.HashMap;
 import java.util.Map;
-import requests.Request;
 import requests.RequestType;
-import requests.Response;
-import requests.ResponseStatus;
 import session.Session;
 import session.SessionManager;
 
@@ -62,7 +59,6 @@ public class RequestHandlerRegistry {
     private static RequestHandler createLoginHandler() {
         return (request, response) -> {
             Administrator admin = AuthenticationController.getInstance().login((Administrator) request.getData());
-            System.out.println("nesto");
             if (admin != null) {
                 response.setData(admin);
                 Session session = SessionManager.getInstance().createSession(admin);

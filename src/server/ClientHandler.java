@@ -1,10 +1,12 @@
 package server;
 
+import domain.Entity;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import requests.Request;
+import requests.RequestType;
 import requests.Response;
 import requests.ResponseStatus;
 import session.SessionManager;
@@ -35,13 +37,17 @@ public class ClientHandler implements Runnable {
             e.printStackTrace();
         } finally {
             try {
+                System.out.println("finally");
                 if (in != null) {
+                    System.out.println("in");
                     in.close();
                 }
                 if (out != null) {
+                    System.out.println("out");
                     out.close();
                 }
                 if (clientSocket != null && !clientSocket.isClosed()) {
+                    System.out.println("socket");
                     clientSocket.close();
                 }
             } catch (IOException e) {

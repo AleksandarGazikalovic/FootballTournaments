@@ -17,19 +17,19 @@ import java.util.List;
  * @author Gazi
  */
 public abstract class AbstractRepository<T extends Entity> implements RepositoryInterface<T> {
-
+    
     private final DBConnection dbConnection;
-
+    
     public AbstractRepository() {
         this.dbConnection = DBConnection.getInstance();
     }
-
+    
     @SuppressWarnings("unchecked")
     @Override
     public T getById(T entity) throws SQLException {
         ResultSet rs = null;
         Statement st = null;
-        String query = "SELECT * FROM " + entity.getClassName() + " WHERE " + entity.getWhereCondition();
+        String query = "SELECT * FROM " + entity.getClassName() + " " + entity.join() + " WHERE " + entity.getWhereCondition();
         boolean signal;
         try {
             st = dbConnection.connection.createStatement();
@@ -47,13 +47,13 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
         }
         return entity;
     }
-
+    
     @SuppressWarnings("unchecked")
     @Override
     public List<T> getAll(Entity entity) throws SQLException {
         ResultSet rs = null;
         Statement st = null;
-        String query = "SELECT * FROM " + entity.getClassName()+ " " + entity.join();
+        String query = "SELECT * FROM " + entity.getClassName() + " " + entity.join();
         List<T> ls = new ArrayList<>();
         try {
             st = dbConnection.connection.createStatement();
@@ -68,13 +68,13 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
         }
         return ls;
     }
-
+    
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findBy(Entity entity, String where) throws SQLException {
         ResultSet rs = null;
         Statement st = null;
-        String query = "SELECT * FROM " + entity.getClassName() + " WHERE " + where;
+        String query = "SELECT * FROM " + entity.getClassName() + " " + entity.join() + " WHERE " + where;
         List<T> ls = new ArrayList<>();
         try {
             st = dbConnection.connection.createStatement();
@@ -89,27 +89,27 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
         }
         return ls;
     }
-
+    
     @Override
     public Long save(Entity entity) throws SQLException {
-        String query = "INSERT INTO " + entity.getClassName() + " VALUES (" + entity.getAtrValue() + ")";
+        String query = "INSERT INTO " + entity.getClassName() + entity.getColumns() + " VALUES (" + entity.getAtrValue() + ")";
         System.out.println(query);
-        return dbConnection.executeUpdate(query);
+        return dbConnection.executeInsert(query);
     }
-
+    
     @Override
-    public Long update(Entity entity) throws SQLException {
+    public boolean update(Entity entity) throws SQLException {
         String query = "UPDATE " + entity.getClassName() + " SET " + entity.setAtrValue() + " WHERE "
                 + entity.getWhereCondition();
         System.out.println(query);
         return dbConnection.executeUpdate(query);
     }
-
+    
     @Override
-    public Long delete(Entity entity) throws SQLException {
+    public boolean delete(Entity entity) throws SQLException {
         String query = "DELETE FROM " + entity.getClassName() + " WHERE " + entity.getWhereCondition();
         System.out.println(query);
         return dbConnection.executeUpdate(query);
     }
-
+    
 }

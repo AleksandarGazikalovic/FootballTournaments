@@ -6,6 +6,7 @@ package controller;
 
 import domain.Administrator;
 import domain.Entity;
+import domain.Question;
 import domain.Quiz;
 import domain.Tournament;
 
@@ -27,6 +28,7 @@ public class FrontController {
         controllers.put(Tournament.class, TournamentController.getInstance());
         controllers.put(Quiz.class, QuizController.getInstance());
         controllers.put(Administrator.class, AuthenticationController.getInstance());
+        controllers.put(Question.class, QuestionController.getInstance());
     }
 
     public static FrontController getInstance() {

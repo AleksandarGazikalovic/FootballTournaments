@@ -46,20 +46,20 @@ public class DBConnection {
         }
     }
 
-    public Long executeUpdate(String query) {
+    public Long executeInsert(String query) {
         Statement st = null;
         try {
             st = connection.createStatement();
             int rowcount = st.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             if (rowcount == 0) {
-                throw new SQLException("Inserting quiz failed, no rows affected.");
+                throw new SQLException("Inserting entity failed, no rows affected.");
             }
 
             try ( ResultSet generatedKeys = st.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     return generatedKeys.getLong(1);
                 } else {
-                    throw new SQLException("Inserting quiz failed, no ID obtained.");
+                    throw new SQLException("Inserting entity failed, no ID obtained.");
                 }
             }
         } catch (SQLException e) {
@@ -68,6 +68,24 @@ public class DBConnection {
         } finally {
             close(null, st, null);
         }
+    }
+
+    public boolean executeUpdate(String query) {
+        Statement st = null;
+        boolean signal = false;
+        try {
+            st = connection.createStatement();
+            int rowcount = st.executeUpdate(query);
+            if (rowcount > 0) {
+                signal = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+            signal = false;
+        } finally {
+            close(null, st, null);
+        }
+        return signal;
     }
 
     public void close(Connection conn, Statement st, ResultSet rs) {
