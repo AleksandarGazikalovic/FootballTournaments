@@ -5,6 +5,7 @@
 package service;
 
 import domain.Tournament;
+import domain.TournamentRound;
 import java.sql.SQLException;
 import java.util.List;
 import repository.TournamentRepository;
@@ -17,9 +18,11 @@ public class TournamentService {
 
     private static TournamentService instance;
     private final TournamentRepository tournamentRepository;
+    private final TournamentRoundService tournamentRoundService;
 
     private TournamentService() {
         this.tournamentRepository = TournamentRepository.getInstance();
+        this.tournamentRoundService = TournamentRoundService.getInstance();
     }
 
     public static TournamentService getInstance() {
@@ -32,9 +35,14 @@ public class TournamentService {
     // public Tournament getById(int id) {
     // return (Tournament) this.tournamentRepository.findBy();
     // }
-
     public void createTournament(Tournament tournament) throws SQLException {
-        tournamentRepository.save(tournament);
+        Long tournamentID = tournamentRepository.save(tournament);
+        tournament.setTournamentID(tournamentID);
+        List<TournamentRound> rounds = tournament.getRounds();
+        for (int i = 0; i < rounds.size(); i++) {
+            rounds.get(i).setTournament(tournament);
+            tournamentRoundService.createTournamentRound(rounds.get(i));
+        }
     }
 
     public List<Tournament> findTournament(List<Tournament> tournaments, Object value) {

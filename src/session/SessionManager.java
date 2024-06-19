@@ -14,8 +14,6 @@ import java.util.Map;
 import java.util.UUID;
 import requests.Request;
 import requests.RequestType;
-import requests.Response;
-import requests.ResponseStatus;
 
 public class SessionManager {
 

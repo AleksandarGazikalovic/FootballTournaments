@@ -4,17 +4,14 @@ import java.sql.SQLException;
 import org.mindrot.jbcrypt.BCrypt;
 import domain.Administrator;
 import repository.AuthenticationRepository;
-import session.Session;
 import session.SessionManager;
 
 public class AuthenticationService {
 
     private static AuthenticationService instance;
-    private final SessionManager sessionManager;
     private final AuthenticationRepository authenticationRepository;
 
     private AuthenticationService() {
-        this.sessionManager = SessionManager.getInstance();
         this.authenticationRepository = AuthenticationRepository.getInstance();
     }
 
