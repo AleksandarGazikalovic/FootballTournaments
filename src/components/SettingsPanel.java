@@ -5,6 +5,13 @@
 package components;
 
 import controller.PanelController;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import utils.PanelNames;
 
 /**
@@ -12,6 +19,14 @@ import utils.PanelNames;
  * @author Gazi
  */
 public class SettingsPanel extends javax.swing.JPanel {
+
+    private static final String DB_FILE = "dbconfig.properties";
+    private static final String DB_URL_KEY = "url";
+    private static final String DB_USERNAME_KEY = "username";
+    private static final String DB_PASSWORD_KEY = "password";
+    private static final String DEFAULT_URL_KEY = "jdbc:mysql://localhost:3306/quiz_tournaments";
+    private static final String DEFAULT_USERNAME_KEY = "root";
+    private static final String DEFAULT_PASSWORD_KEY = "";
 
     /**
      * Creates new form SettingsPanel
@@ -31,10 +46,12 @@ public class SettingsPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         configurationTitleLbl = new javax.swing.JLabel();
-        startBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
         databaseNameField = new components.TextInputField();
         usernameField = new components.TextInputField();
         passwordField = new components.TextInputField();
+        saveBtn = new javax.swing.JButton();
+        restoreDefaultBtn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(600, 350));
         setMinimumSize(new java.awt.Dimension(600, 350));
@@ -42,10 +59,24 @@ public class SettingsPanel extends javax.swing.JPanel {
 
         configurationTitleLbl.setText("Database configuration");
 
-        startBtn.setText("Back");
-        startBtn.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startBtnActionPerformed(evt);
+                backBtnActionPerformed(evt);
+            }
+        });
+
+        saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
+
+        restoreDefaultBtn.setText("Restore default");
+        restoreDefaultBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restoreDefaultBtnActionPerformed(evt);
             }
         });
 
@@ -56,9 +87,16 @@ public class SettingsPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(configurationTitleLbl)
-                    .addComponent(startBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(configurationTitleLbl)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(restoreDefaultBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(saveBtn)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,22 +116,46 @@ public class SettingsPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
-                .addComponent(startBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(saveBtn)
+                    .addComponent(restoreDefaultBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         PanelController.getInstance().updatePanel(PanelNames.START_SERVER_PANEL);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startBtnActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        try {
+            String url = databaseNameField.getValue();
+            String username = usernameField.getValue();
+            String password = passwordField.getValue();
+            saveProperties(url, username, password);
+            JOptionPane.showMessageDialog(this, "Konekcija je uspesno azurirana!");
+            PanelController.getInstance().updatePanel(PanelNames.START_SERVER_PANEL);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Morate popuniti sva polja!");
+            Logger.getLogger(SettingsPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void restoreDefaultBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoreDefaultBtnActionPerformed
+        saveProperties(DEFAULT_URL_KEY, DEFAULT_USERNAME_KEY, DEFAULT_PASSWORD_KEY);
+        JOptionPane.showMessageDialog(this, "Povratili ste pocetna podesavanja konekcije");
+        PanelController.getInstance().updatePanel(PanelNames.START_SERVER_PANEL);
+    }//GEN-LAST:event_restoreDefaultBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JLabel configurationTitleLbl;
     private components.TextInputField databaseNameField;
     private components.TextInputField passwordField;
-    private javax.swing.JButton startBtn;
+    private javax.swing.JButton restoreDefaultBtn;
+    private javax.swing.JButton saveBtn;
     private components.TextInputField usernameField;
     // End of variables declaration//GEN-END:variables
 
@@ -101,5 +163,26 @@ public class SettingsPanel extends javax.swing.JPanel {
         databaseNameField.setText("Database name: ");
         usernameField.setText("Username: ");
         passwordField.setText("Password: ");
+    }
+
+    private void saveProperties(String url, String username, String password) {
+
+        Properties properties = new Properties();
+
+        try ( FileInputStream in = new FileInputStream(DB_FILE)) {
+            properties.load(in);
+        } catch (IOException e) {
+            System.out.println("DB properties file not found, creating new one.");
+        }
+
+        properties.setProperty(DB_URL_KEY, url);
+        properties.setProperty(DB_USERNAME_KEY, username);
+        properties.setProperty(DB_PASSWORD_KEY, password);
+
+        try ( FileOutputStream out = new FileOutputStream(DB_FILE)) {
+            properties.store(out, "DB Properties");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

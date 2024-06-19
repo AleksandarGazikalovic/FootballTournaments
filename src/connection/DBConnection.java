@@ -4,6 +4,7 @@
  */
 package connection;
 
+import controller.PanelController;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.sql.*;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,8 +43,8 @@ public class DBConnection {
             String pass = properties.getProperty("password");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(PanelController.getInstance().getContainer(), "Pogresna konfiguracija baze");
             ex.printStackTrace();
-            System.out.println("Error connection to database!");
         }
     }
 
