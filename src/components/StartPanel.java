@@ -96,16 +96,11 @@ public class StartPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_startServerBtnActionPerformed
 
     private void stopServerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopServerBtnActionPerformed
-        if (server.getServerSocket() != null && server.getServerSocket().isBound()) {
-            try {
-                server.getServerSocket().close();
-                stopServerBtn.setEnabled(false);
-                startServerBtn.setEnabled(true);
-                statusLabel.setText("Status: Server stopped");
-            } catch (Exception ex) {
-
-                Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (server != null) {
+            server.shutdown();
+            stopServerBtn.setEnabled(false);
+            startServerBtn.setEnabled(true);
+            statusLabel.setText("Status: Server stopped");
         }
     }//GEN-LAST:event_stopServerBtnActionPerformed
 
