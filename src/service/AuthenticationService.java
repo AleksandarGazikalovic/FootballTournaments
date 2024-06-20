@@ -53,7 +53,7 @@ public class AuthenticationService {
     }
 
     public Administrator getLoggedInUser(String sessionId) {
-        return SessionManager.getInstance().getSession(sessionId).getUser();
+        return SessionManager.getInstance().getSession(sessionId).getAdmin();
     }
 
     public void logout(String sessionId) {

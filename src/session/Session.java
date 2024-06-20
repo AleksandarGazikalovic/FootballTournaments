@@ -12,13 +12,13 @@ import domain.Administrator;
  */
 public class Session {
     private String sessionId;
-    private Administrator user;
+    private Administrator admin;
     private long creationTime;
     private long lastAccessedTime;
 
-    public Session(String sessionId, Administrator user) {
+    public Session(String sessionId, Administrator admin) {
         this.sessionId = sessionId;
-        this.user = user;
+        this.admin = admin;
         this.creationTime = System.currentTimeMillis();
         this.lastAccessedTime = System.currentTimeMillis();
     }
@@ -27,8 +27,8 @@ public class Session {
         return sessionId;
     }
 
-    public Administrator getUser() {
-        return user;
+    public Administrator getAdmin() {
+        return admin;
     }
 
     public long getCreationTime() {

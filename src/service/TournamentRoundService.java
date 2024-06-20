@@ -37,7 +37,8 @@ public class TournamentRoundService {
         tournamentRoundRepository.update(tournamentRound);
     }
 
-    public List<TournamentRound> loadQuizTournamentRounds(TournamentRound tournamentRound) throws SQLException {
+    public List<TournamentRound> loadTournamentRounds(TournamentRound tournamentRound) throws SQLException {
         return tournamentRoundRepository.findBy(tournamentRound, tournamentRound.getNewKey_Where());
     }
+
 }

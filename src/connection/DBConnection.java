@@ -61,7 +61,7 @@ public class DBConnection {
                 if (generatedKeys.next()) {
                     return generatedKeys.getLong(1);
                 } else {
-                    throw new SQLException("Inserting entity failed, no ID obtained.");
+                    return -1L;
                 }
             }
         } catch (SQLException e) {

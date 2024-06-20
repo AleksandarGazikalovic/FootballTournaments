@@ -9,6 +9,7 @@ import domain.Entity;
 import domain.Question;
 import domain.Quiz;
 import domain.Tournament;
+import domain.TournamentRound;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +30,7 @@ public class FrontController {
         controllers.put(Quiz.class, QuizController.getInstance());
         controllers.put(Administrator.class, AuthenticationController.getInstance());
         controllers.put(Question.class, QuestionController.getInstance());
+        controllers.put(TournamentRound.class, TournamentRoundController.getInstance());
     }
 
     public static FrontController getInstance() {

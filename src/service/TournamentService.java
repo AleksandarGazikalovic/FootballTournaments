@@ -59,6 +59,12 @@ public class TournamentService {
 
     public void updateTournament(Tournament tournament) throws SQLException {
         tournamentRepository.update(tournament);
+        List<TournamentRound> rounds = tournament.getRounds();
+        for (int i = 0; i < rounds.size(); i++) {
+            rounds.get(i).setTournament(tournament);
+            rounds.get(i).print();
+            tournamentRoundService.updateTournamentRound(rounds.get(i));
+        }
     }
 
     public void deleteTournament(Tournament tournament) throws SQLException {
