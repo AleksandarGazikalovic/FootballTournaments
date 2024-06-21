@@ -26,7 +26,7 @@ public class DBConnection {
     private DBConnection() {
     }
 
-    public static DBConnection getInstance() {
+    public static DBConnection getInstance() throws Exception {
         if (instance == null) {
             instance = new DBConnection();
             instance.connect();
@@ -34,18 +34,13 @@ public class DBConnection {
         return instance;
     }
 
-    public void connect() {
-        try {
+    public void connect() throws Exception {
             Properties properties = new Properties();
             properties.load(new FileInputStream("dbconfig.properties"));
             String url = properties.getProperty("url");
             String user = properties.getProperty("username");
             String pass = properties.getProperty("password");
             connection = DriverManager.getConnection(url, user, pass);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(PanelController.getInstance().getContainer(), "Pogresna konfiguracija baze");
-            ex.printStackTrace();
-        }
     }
 
     public Long executeInsert(String query) {

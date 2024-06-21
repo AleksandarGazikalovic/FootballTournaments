@@ -5,10 +5,7 @@
 package controller;
 
 import domain.Tournament;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import service.TournamentService;
 
 /**
@@ -31,63 +28,33 @@ public class TournamentController implements AbstractController<Tournament> {
         return instance;
     }
 
-    // public List<Tournament> loadTournamentsList(List<Tournament> tournaments){
-    // return tournamentService.loadTournamentsList(tournaments);
-    // }
     public List<Tournament> findTournament(List<Tournament> tournaments, Object value) {
         return tournamentService.findTournament(tournaments, value);
     }
 
-    // public Tournament loadTournament(Tournament tournament) {
-    // try {
-    // return tournamentService.loadTournament(tournament);
-    // } catch (SQLException ex) {
-    // Logger.getLogger(TournamentController.class.getName()).log(Level.SEVERE,
-    // null, ex);
-    // }
-    // }
-
-
     @Override
-    public void save(Tournament tournament) {
-        try {
-            tournamentService.createTournament(tournament);
-        } catch (SQLException ex) {
-            Logger.getLogger(TournamentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void save(Tournament tournament) throws Exception {
+        tournamentService.createTournament(tournament);
 
     }
 
     @Override
-    public void update(Tournament tournament) {
-        try {
-            tournamentService.updateTournament(tournament);
-        } catch (SQLException ex) {
-            Logger.getLogger(TournamentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void update(Tournament tournament) throws Exception {
+        tournamentService.updateTournament(tournament);
     }
 
     @Override
-    public void delete(Tournament tournament) {
-        try {
-            tournamentService.deleteTournament(tournament);
-        } catch (SQLException ex) {
-            Logger.getLogger(TournamentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void delete(Tournament tournament) throws Exception {
+        tournamentService.deleteTournament(tournament);
     }
 
     @Override
-    public List<Tournament> getAll(Tournament tournament) {
-        try {
-            return tournamentService.loadTournamentsList(tournament);
-        } catch (SQLException ex) {
-            Logger.getLogger(TournamentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public List<Tournament> getAll(Tournament tournament) throws Exception {
+        return tournamentService.loadTournamentsList(tournament);
     }
 
     @Override
-    public Tournament get(Long id) {
+    public Tournament get(Long id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

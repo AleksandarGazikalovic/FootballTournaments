@@ -5,8 +5,10 @@
 package components;
 
 import connection.DBConnection;
+import controller.PanelController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import server.Server;
 
 /**
@@ -86,12 +88,17 @@ public class StartPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startServerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startServerBtnActionPerformed
-        DBConnection.getInstance().connect();
-        server = new Server();
-        server.start();
-        stopServerBtn.setEnabled(true);
-        startServerBtn.setEnabled(false);
-        statusLabel.setText("Status: Server running");
+        try {
+            DBConnection.getInstance().connect();
+            server = new Server();
+            server.start();
+            stopServerBtn.setEnabled(true);
+            startServerBtn.setEnabled(false);
+            statusLabel.setText("Status: Server running");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Pogresna konfiguracija baze");
+            ex.printStackTrace();
+        }
 
     }//GEN-LAST:event_startServerBtnActionPerformed
 

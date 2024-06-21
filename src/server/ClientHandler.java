@@ -58,9 +58,6 @@ public class ClientHandler implements Runnable {
     }
 
     private Response handleRequest(Request request) {
-        if (request.getRequestType() == RequestType.UPDATE) {
-            ((Tournament) request.getData()).getRounds().get(0).print();
-        }
         Response response = new Response(null, null, ResponseStatus.Success);
         try {
             RequestHandler handler = RequestHandlerRegistry.getHandler(request.getRequestType());

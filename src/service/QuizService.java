@@ -33,9 +33,6 @@ public class QuizService {
         return instance;
     }
 
-    // public Quiz getById(int id) {
-    // return (Quiz) this.quizRepository.findBy();
-    // }
     public void createQuiz(Quiz quiz) throws SQLException {
         Long quizId = quizRepository.save(quiz);
         quiz.setQuizID(quizId);

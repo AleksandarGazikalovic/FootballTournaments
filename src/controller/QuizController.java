@@ -5,10 +5,7 @@
 package controller;
 
 import domain.Quiz;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import service.QuizService;
 
 /**
@@ -31,53 +28,32 @@ public class QuizController implements AbstractController<Quiz> {
         return instance;
     }
 
-    public List<Quiz> findQuiz(List<Quiz> quizzes, int value) {
+    public List<Quiz> findQuiz(List<Quiz> quizzes, int value) throws Exception{
         return quizService.findQuiz(quizzes, value);
     }
 
-//    public Response loadQuiz(Quiz quiz) {
-//        return quizService.loadQuiz(quiz);
-//    }
-
     @Override
-    public void save(Quiz quiz) {
-        try {
-            quizService.createQuiz(quiz);
-        } catch (SQLException ex) {
-            Logger.getLogger(QuizController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void save(Quiz quiz) throws Exception {
+        quizService.createQuiz(quiz);
     }
 
     @Override
-    public void update(Quiz quiz) {
-        try {
-            quizService.updateQuiz(quiz);
-        } catch (SQLException ex) {
-            Logger.getLogger(QuizController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void update(Quiz quiz) throws Exception {
+        quizService.updateQuiz(quiz);
     }
 
     @Override
-    public void delete(Quiz quiz) {
-        try {
-            quizService.deleteQuiz(quiz);
-        } catch (SQLException ex) {
-            Logger.getLogger(QuizController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void delete(Quiz quiz) throws Exception {
+        quizService.deleteQuiz(quiz);
     }
 
     @Override
-    public List<Quiz> getAll(Quiz quiz) {
-        try {
-            return quizService.loadQuizzesList(quiz);
-        } catch (SQLException ex) {
-            Logger.getLogger(QuizController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public List<Quiz> getAll(Quiz quiz) throws Exception {
+        return quizService.loadQuizzesList(quiz);
     }
 
     @Override
-    public Quiz get(Long id) {
+    public Quiz get(Long id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

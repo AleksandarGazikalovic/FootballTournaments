@@ -20,7 +20,7 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
     
     private final DBConnection dbConnection;
     
-    public AbstractRepository() {
+    public AbstractRepository() throws Exception {
         this.dbConnection = DBConnection.getInstance();
     }
     

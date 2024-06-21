@@ -10,6 +10,7 @@ import components.IView;
 import components.SettingsPanel;
 import components.StartPanel;
 import controller.PanelController;
+import session.SessionManager;
 import utils.PanelNames;
 
 /**
@@ -27,7 +28,6 @@ public class MainForm extends javax.swing.JFrame implements IView {
         initComponents();
         setLocationRelativeTo(null);
         populatePanel();
-
     }
 
     /**

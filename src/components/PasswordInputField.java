@@ -8,22 +8,20 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.UIManager;
 import validator.Validator;
-import validator.impl.NotNullValidator;
 
 /**
  *
  * @author Gazi
  */
-public class TextInputField extends javax.swing.JPanel implements InputValue {
+public class PasswordInputField extends javax.swing.JPanel implements InputValue {
 
     private Validator validator;
 
     /**
      * Creates new form InputTextField
      */
-    public TextInputField() {
+    public PasswordInputField() {
         initComponents();
-        validator = new NotNullValidator();
     }
 
     /**
@@ -36,7 +34,7 @@ public class TextInputField extends javax.swing.JPanel implements InputValue {
     private void initComponents() {
 
         txtLabel = new javax.swing.JLabel();
-        txtField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
 
         setMaximumSize(new java.awt.Dimension(600, 34));
         setMinimumSize(new java.awt.Dimension(600, 34));
@@ -52,8 +50,8 @@ public class TextInputField extends javax.swing.JPanel implements InputValue {
                 .addContainerGap()
                 .addComponent(txtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,7 +59,7 @@ public class TextInputField extends javax.swing.JPanel implements InputValue {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtField))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -71,11 +69,11 @@ public class TextInputField extends javax.swing.JPanel implements InputValue {
     }
 
     public void setValue(String text) {
-        txtField.setText(text);
+        passwordField.setText(text);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField txtField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel txtLabel;
     // End of variables declaration//GEN-END:variables
 
@@ -83,15 +81,15 @@ public class TextInputField extends javax.swing.JPanel implements InputValue {
     public String getValue() throws Exception {
         if (validator != null) {
             try {
-                validator.validate(txtField.getText());
-                txtField.setBorder(UIManager.getBorder("TextField.border"));
-                return txtField.getText();
+                validator.validate(passwordField.getText());
+                passwordField.setBorder(UIManager.getBorder("TextField.border"));
+                return passwordField.getText();
             } catch (Exception e) {
-                txtField.setBorder(BorderFactory.createLineBorder(Color.red, 1));
+                passwordField.setBorder(BorderFactory.createLineBorder(Color.red, 1));
                 throw e;
             }
         } else {
-            return txtField.getText();
+            return passwordField.getText();
         }
     }
 

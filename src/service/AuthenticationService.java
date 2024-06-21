@@ -1,6 +1,5 @@
 package service;
 
-import java.sql.SQLException;
 import org.mindrot.jbcrypt.BCrypt;
 import domain.Administrator;
 import repository.AuthenticationRepository;
@@ -23,11 +22,11 @@ public class AuthenticationService {
     }
 
     public void register(Administrator administrator)
-            throws SQLException {
+            throws Exception {
         Administrator foundAdmin = authenticationRepository.getById(administrator);
 
         if (foundAdmin != null) {
-            return;
+            throw new Exception("Korisnik sa unetim username-om vec postoji!");
         }
 
         String hashedPassword = BCrypt.hashpw(administrator.getPassword(), BCrypt.gensalt());
@@ -36,11 +35,11 @@ public class AuthenticationService {
         authenticationRepository.register(administrator);
     }
 
-    public Administrator login(Administrator administrator) throws SQLException {
+    public Administrator login(Administrator administrator) throws Exception {
 
         Administrator foundAdmin = authenticationRepository.getById(administrator);
         if (administrator == null || foundAdmin == null) {
-            return null;
+            throw new Exception("Korisnik s unetim kredencijalima ne postoji!");
         }
 
         if (BCrypt.checkpw(administrator.getPassword(), foundAdmin.getPassword())) {
@@ -49,7 +48,7 @@ public class AuthenticationService {
             return administrator;
         }
 
-        return null;
+        throw new Exception("Uneli ste pogresnu lozinku!");
     }
 
     public Administrator getLoggedInUser(String sessionId) {

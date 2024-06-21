@@ -10,14 +10,17 @@ import validator.Validator;
  *
  * @author Gazi
  */
-public class PasswordValidator implements Validator{
+public class NotNullValidator implements Validator {
 
     @Override
     public void validate(Object value) throws Exception {
-        String password = value.toString();
-        if (password.length() < 3) {
-            throw new Exception("Šifra mora da sadrži više od 3 znaka.");
+        if (value == null) {
+            throw new Exception("Polje ne moze biti prazno!");
+        }
+        String text = String.valueOf(value);
+        if (text.length() == 0) {
+            throw new Exception("Polje ne moze biti prazno!");
         }
     }
-    
+
 }

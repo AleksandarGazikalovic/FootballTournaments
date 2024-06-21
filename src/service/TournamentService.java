@@ -32,9 +32,6 @@ public class TournamentService {
         return instance;
     }
 
-    // public Tournament getById(int id) {
-    // return (Tournament) this.tournamentRepository.findBy();
-    // }
     public void createTournament(Tournament tournament) throws SQLException {
         Long tournamentID = tournamentRepository.save(tournament);
         tournament.setTournamentID(tournamentID);
