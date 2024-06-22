@@ -96,7 +96,7 @@ public class StartPanel extends javax.swing.JPanel {
             startServerBtn.setEnabled(false);
             statusLabel.setText("Status: Server running");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Pogresna konfiguracija baze");
+            JOptionPane.showMessageDialog(this, "Konekcija s bazom se ne moze uspostaviti!");
             ex.printStackTrace();
         }
 
