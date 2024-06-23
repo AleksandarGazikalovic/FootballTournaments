@@ -14,12 +14,14 @@ import session.SessionManager;
 
 public class ClientHandler implements Runnable {
 
+    private Server server;
     private final Socket clientSocket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
 
-    public ClientHandler(Socket clientSocket) {
+    public ClientHandler(Socket clientSocket, Server server) {
         this.clientSocket = clientSocket;
+        this.server = server;
     }
 
     @Override
@@ -29,6 +31,9 @@ public class ClientHandler implements Runnable {
             in = new ObjectInputStream(clientSocket.getInputStream());
 
             while (!clientSocket.isClosed()) {
+                if (server.isShuttingDown()) {
+                    break;
+                }
                 Request request = (Request) in.readObject();
                 Response response = handleRequest(request);
                 out.writeObject(response);

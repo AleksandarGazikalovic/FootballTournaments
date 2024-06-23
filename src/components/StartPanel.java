@@ -94,7 +94,7 @@ public class StartPanel extends javax.swing.JPanel {
             server.start();
             stopServerBtn.setEnabled(true);
             startServerBtn.setEnabled(false);
-            statusLabel.setText("Status: Server running");
+            statusLabel.setText("Status: Server je pokrenut");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Konekcija s bazom se ne moze uspostaviti!");
             ex.printStackTrace();
@@ -107,7 +107,7 @@ public class StartPanel extends javax.swing.JPanel {
             server.shutdown();
             stopServerBtn.setEnabled(false);
             startServerBtn.setEnabled(true);
-            statusLabel.setText("Status: Server stopped");
+            statusLabel.setText("Status: Server je ugasen");
         }
     }//GEN-LAST:event_stopServerBtnActionPerformed
 

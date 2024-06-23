@@ -29,7 +29,7 @@ public class Server extends Thread {
                 try {
                     Socket clientSocket = serverSocket.accept();
                     System.out.println("Accepted connection from " + clientSocket.getInetAddress());
-                    executorService.submit(new ClientHandler(clientSocket));
+                    executorService.submit(new ClientHandler(clientSocket, this));
                 } catch (IOException e) {
                     if (running) {
                         e.printStackTrace();
@@ -55,6 +55,10 @@ public class Server extends Thread {
             }
         }
         executorService.shutdown();
+    }
+    
+    public boolean isShuttingDown() {
+        return !running;
     }
 
     public ServerSocket getServerSocket() {
