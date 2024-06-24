@@ -18,11 +18,11 @@ public class TournamentRoundService {
     private static TournamentRoundService instance;
     private final TournamentRoundRepository tournamentRoundRepository;
 
-    private TournamentRoundService() {
+    private TournamentRoundService() throws Exception {
         this.tournamentRoundRepository = TournamentRoundRepository.getInstance();
     }
 
-    public static TournamentRoundService getInstance() {
+    public static TournamentRoundService getInstance() throws Exception {
         if (instance == null) {
             instance = new TournamentRoundService();
         }

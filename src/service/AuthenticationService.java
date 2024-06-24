@@ -10,11 +10,11 @@ public class AuthenticationService {
     private static AuthenticationService instance;
     private final AuthenticationRepository authenticationRepository;
 
-    private AuthenticationService() {
+    private AuthenticationService() throws Exception {
         this.authenticationRepository = AuthenticationRepository.getInstance();
     }
 
-    public static AuthenticationService getInstance() {
+    public static AuthenticationService getInstance() throws Exception {
         if (instance == null) {
             instance = new AuthenticationService();
         }
@@ -26,7 +26,7 @@ public class AuthenticationService {
         Administrator foundAdmin = authenticationRepository.getById(administrator);
 
         if (foundAdmin != null) {
-            throw new Exception("Korisnik sa unetim username-om vec postoji!");
+            throw new Exception("Administrator with that username already exists!");
         }
 
         String hashedPassword = BCrypt.hashpw(administrator.getPassword(), BCrypt.gensalt());
@@ -39,7 +39,7 @@ public class AuthenticationService {
 
         Administrator foundAdmin = authenticationRepository.getById(administrator);
         if (administrator == null || foundAdmin == null) {
-            throw new Exception("Korisnik s unetim kredencijalima ne postoji!");
+            throw new Exception("Administrator with entered credentials does not exist!");
         }
 
         if (BCrypt.checkpw(administrator.getPassword(), foundAdmin.getPassword())) {
@@ -48,7 +48,7 @@ public class AuthenticationService {
             return administrator;
         }
 
-        throw new Exception("Uneli ste pogresnu lozinku!");
+        throw new Exception("Password is incorrect!");
     }
 
     public Administrator getLoggedInUser(String sessionId) {

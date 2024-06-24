@@ -17,11 +17,11 @@ public class QuestionController implements AbstractController<Question> {
     private static QuestionController instance;
     private final QuestionService questionService;
 
-    private QuestionController() {
+    private QuestionController() throws Exception {
         this.questionService = QuestionService.getInstance();
     }
 
-    public static QuestionController getInstance() {
+    public static QuestionController getInstance() throws Exception {
         if (instance == null) {
             instance = new QuestionController();
         }

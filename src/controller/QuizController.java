@@ -17,11 +17,11 @@ public class QuizController implements AbstractController<Quiz> {
     private static QuizController instance;
     private final QuizService quizService;
 
-    private QuizController() {
+    private QuizController() throws Exception {
         this.quizService = QuizService.getInstance();
     }
 
-    public static QuizController getInstance() {
+    public static QuizController getInstance() throws Exception {
         if (instance == null) {
             instance = new QuizController();
         }

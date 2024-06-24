@@ -10,11 +10,11 @@ public class AuthenticationController implements AbstractController<Administrato
     private static AuthenticationController instance;
     private final AuthenticationService authenticationService;
 
-    private AuthenticationController() {
+    private AuthenticationController() throws Exception {
         this.authenticationService = AuthenticationService.getInstance();
     }
 
-    public static AuthenticationController getInstance() {
+    public static AuthenticationController getInstance() throws Exception {
         if (instance == null) {
             instance = new AuthenticationController();
         }

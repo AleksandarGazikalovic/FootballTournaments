@@ -148,17 +148,17 @@ public class SettingsPanel extends javax.swing.JPanel {
             String username = usernameField.getValue();
             String password = passwordField.getValue();
             saveProperties(url, username, password);
-            JOptionPane.showMessageDialog(this, "Konekcija je uspesno azurirana!");
+            JOptionPane.showMessageDialog(this, "Connection successfully updated!");
             PanelController.getInstance().updatePanel(PanelNames.START_SERVER_PANEL);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Morate popuniti sva polja!");
+            JOptionPane.showMessageDialog(this, "You must fill all fields!");
             Logger.getLogger(SettingsPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }// GEN-LAST:event_saveBtnActionPerformed
 
     private void restoreDefaultBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_restoreDefaultBtnActionPerformed
         saveProperties(DEFAULT_URL_KEY, DEFAULT_USERNAME_KEY, DEFAULT_PASSWORD_KEY);
-        JOptionPane.showMessageDialog(this, "Povratili ste pocetna podesavanja konekcije");
+        JOptionPane.showMessageDialog(this, "Connection configuration reset to default!");
         PanelController.getInstance().updatePanel(PanelNames.START_SERVER_PANEL);
     }// GEN-LAST:event_restoreDefaultBtnActionPerformed
 

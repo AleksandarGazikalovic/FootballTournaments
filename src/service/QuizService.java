@@ -21,12 +21,12 @@ public class QuizService {
     private QuizRepository quizRepository;
     private QuestionService questionService;
 
-    private QuizService() {
+    private QuizService() throws Exception {
         this.quizRepository = QuizRepository.getInstance();
         this.questionService = QuestionService.getInstance();
     }
 
-    public static QuizService getInstance() {
+    public static QuizService getInstance() throws Exception {
         if (instance == null) {
             instance = new QuizService();
         }

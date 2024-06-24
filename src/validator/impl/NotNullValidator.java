@@ -15,11 +15,11 @@ public class NotNullValidator implements Validator {
     @Override
     public void validate(Object value) throws Exception {
         if (value == null) {
-            throw new Exception("Polje ne moze biti prazno!");
+            throw new Exception("Field can't be empty!");
         }
         String text = String.valueOf(value);
         if (text.length() == 0) {
-            throw new Exception("Polje ne moze biti prazno!");
+            throw new Exception("Field can't be empty!");
         }
     }
 

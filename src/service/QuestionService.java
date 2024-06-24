@@ -18,11 +18,11 @@ public class QuestionService {
     private static QuestionService instance;
     private final QuestionRepository questionRepository;
 
-    private QuestionService() {
+    private QuestionService() throws Exception {
         this.questionRepository = QuestionRepository.getInstance();
     }
 
-    public static QuestionService getInstance() {
+    public static QuestionService getInstance() throws Exception {
         if (instance == null) {
             instance = new QuestionService();
         }

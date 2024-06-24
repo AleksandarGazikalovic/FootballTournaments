@@ -20,12 +20,12 @@ public class TournamentService {
     private final TournamentRepository tournamentRepository;
     private final TournamentRoundService tournamentRoundService;
 
-    private TournamentService() {
+    private TournamentService() throws Exception {
         this.tournamentRepository = TournamentRepository.getInstance();
         this.tournamentRoundService = TournamentRoundService.getInstance();
     }
 
-    public static TournamentService getInstance() {
+    public static TournamentService getInstance() throws Exception {
         if (instance == null) {
             instance = new TournamentService();
         }

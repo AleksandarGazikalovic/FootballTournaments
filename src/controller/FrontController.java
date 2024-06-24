@@ -24,7 +24,7 @@ public class FrontController {
     private static FrontController instance;
     private Map<Class<? extends Entity>, AbstractController<? extends Entity>> controllers = new HashMap<>();
 
-    private FrontController() {
+    private FrontController() throws Exception {
         // Register controllers
         controllers.put(Tournament.class, TournamentController.getInstance());
         controllers.put(Quiz.class, QuizController.getInstance());
@@ -33,7 +33,7 @@ public class FrontController {
         controllers.put(TournamentRound.class, TournamentRoundController.getInstance());
     }
 
-    public static FrontController getInstance() {
+    public static FrontController getInstance() throws Exception {
         if (instance == null) {
             instance = new FrontController();
         }

@@ -17,11 +17,11 @@ public class TournamentRoundController implements AbstractController<TournamentR
     private static TournamentRoundController instance;
     private final TournamentRoundService tournamentRoundService;
 
-    private TournamentRoundController() {
+    private TournamentRoundController() throws Exception {
         this.tournamentRoundService = TournamentRoundService.getInstance();
     }
 
-    public static TournamentRoundController getInstance() {
+    public static TournamentRoundController getInstance() throws Exception {
         if (instance == null) {
             instance = new TournamentRoundController();
         }
