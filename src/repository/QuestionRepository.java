@@ -14,10 +14,10 @@ public class QuestionRepository extends AbstractRepository<Question> {
 
     private static QuestionRepository instance;
 
-    private QuestionRepository() {
+    private QuestionRepository() throws Exception{
     }
 
-    public static QuestionRepository getInstance() {
+    public static QuestionRepository getInstance() throws Exception {
         if (instance == null) {
             instance = new QuestionRepository();
         }

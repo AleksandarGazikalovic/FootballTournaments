@@ -14,10 +14,10 @@ public class TournamentRepository extends AbstractRepository<Tournament> {
 
     private static TournamentRepository instance;
 
-    private TournamentRepository() {
+    private TournamentRepository() throws Exception{
     }
 
-    public static TournamentRepository getInstance() {
+    public static TournamentRepository getInstance() throws Exception {
         if (instance == null) {
             instance = new TournamentRepository();
         }

@@ -15,10 +15,10 @@ public class AuthenticationRepository extends AbstractRepository<Administrator> 
 
     private static AuthenticationRepository instance;
 
-    private AuthenticationRepository() {
+    private AuthenticationRepository() throws Exception{
     }
 
-    public static AuthenticationRepository getInstance() {
+    public static AuthenticationRepository getInstance() throws Exception {
         if (instance == null) {
             instance = new AuthenticationRepository();
         }

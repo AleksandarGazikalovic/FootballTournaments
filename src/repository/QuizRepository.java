@@ -14,10 +14,10 @@ public class QuizRepository extends AbstractRepository<Quiz> {
 
     private static QuizRepository instance;
 
-    private QuizRepository() {
+    private QuizRepository() throws Exception{
     }
 
-    public static QuizRepository getInstance() {
+    public static QuizRepository getInstance() throws Exception {
         if (instance == null) {
             instance = new QuizRepository();
         }

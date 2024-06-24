@@ -14,10 +14,10 @@ public class TournamentRoundRepository extends AbstractRepository<TournamentRoun
 
     private static TournamentRoundRepository instance;
 
-    private TournamentRoundRepository() {
+    private TournamentRoundRepository() throws Exception{
     }
 
-    public static TournamentRoundRepository getInstance() {
+    public static TournamentRoundRepository getInstance() throws Exception {
         if (instance == null) {
             instance = new TournamentRoundRepository();
         }

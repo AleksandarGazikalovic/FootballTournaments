@@ -2,35 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/service/TournamentService.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/controller/TournamentRoundController.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/controller/AuthenticationController.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/service/AuthenticationService.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/controller/QuizController.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/session/Session.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/components/TextInputField.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/controller/TournamentController.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/components/StartPanel.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/validator/impl/TextValidator.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/form/MainForm.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/connection/DBConnection.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/controller/FrontController.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/session/SessionManager.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/components/SettingsPanel.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/service/TournamentRoundService.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/server/ServerApplication.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/controller/QuestionController.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/main/Main.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/controller/PanelController.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/server/RequestHandler.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/components/PasswordInputField.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/service/QuestionService.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/validator/impl/NotNullValidator.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/server/ClientHandler.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/service/QuizService.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/server/RequestHandlerRegistry.java</file>
-            <file>file:/D:/FON/ProjektovanjeSoftvera/FootballTournaments/src/controller/AbstractController.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
