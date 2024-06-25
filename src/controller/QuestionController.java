@@ -48,9 +48,4 @@ public class QuestionController implements AbstractController<Question> {
         return questionService.loadQuizQuestions(question);
     }
 
-    @Override
-    public Question get(Long id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

@@ -48,9 +48,4 @@ public class TournamentRoundController implements AbstractController<TournamentR
         return tournamentRoundService.loadTournamentRounds(round);
     }
 
-    @Override
-    public TournamentRound get(Long id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

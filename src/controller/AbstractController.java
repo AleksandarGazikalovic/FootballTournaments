@@ -20,7 +20,5 @@ public interface AbstractController<T extends Entity> {
     public abstract void delete(T entity) throws Exception;
 
     public abstract List<T> getAll(T entity) throws Exception;
-    
-    public abstract T get(Long id) throws Exception;
 
 }

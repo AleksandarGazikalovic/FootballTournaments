@@ -36,26 +36,17 @@ public class AuthenticationController implements AbstractController<Administrato
 
     @Override
     public void update(Administrator entity) throws Exception{
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
     @Override
     public void delete(Administrator entity) throws Exception{
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     @Override
     public List<Administrator> getAll(Administrator entity) throws Exception{
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAll'");
-    }
-
-    @Override
-    public Administrator get(Long id) throws Exception{
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
-
     }
 
     public Administrator getLoggedInUser(String sessionId) {

@@ -35,7 +35,7 @@ public class AuthenticationService {
         authenticationRepository.register(administrator);
     }
 
-    public Administrator login(Administrator administrator) throws Exception {
+        public Administrator login(Administrator administrator) throws Exception {
 
         Administrator foundAdmin = authenticationRepository.getById(administrator);
         if (administrator == null || foundAdmin == null) {

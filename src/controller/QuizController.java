@@ -28,7 +28,7 @@ public class QuizController implements AbstractController<Quiz> {
         return instance;
     }
 
-    public List<Quiz> findQuiz(List<Quiz> quizzes, int value) throws Exception{
+    public List<Quiz> findQuiz(List<Quiz> quizzes, int value) throws Exception {
         return quizService.findQuiz(quizzes, value);
     }
 
@@ -50,11 +50,6 @@ public class QuizController implements AbstractController<Quiz> {
     @Override
     public List<Quiz> getAll(Quiz quiz) throws Exception {
         return quizService.loadQuizzesList(quiz);
-    }
-
-    @Override
-    public Quiz get(Long id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

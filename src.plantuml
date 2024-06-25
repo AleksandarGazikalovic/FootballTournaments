@@ -1,0 +1,276 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+interface AbstractController<T> << interface >> {
+  + save(T): void
+  + update(T): void
+  + delete(T): void
+  + getAll(T): List<T>
+}
+class AbstractRepository<T> {
+  + save(Entity): Long
+  + getById(T): T
+  + update(Entity): boolean
+  + delete(Entity): boolean
+  + findBy(Entity, String): List<T>
+  + getAll(Entity): List<T>
+}
+class AuthenticationController {
+  + save(Administrator): void
+  + getAll(Administrator): List<Administrator>
+  + delete(Administrator): void
+  + getLoggedInUser(String): Administrator
+  + login(Administrator): Administrator
+  + logout(String): void
+  + update(Administrator): void
+   instance: AuthenticationController
+}
+class AuthenticationRepository {
+  + register(Administrator): void
+   instance: AuthenticationRepository
+}
+class AuthenticationService {
+  + register(Administrator): void
+  + logout(String): void
+  + getLoggedInUser(String): Administrator
+  + login(Administrator): Administrator
+   instance: AuthenticationService
+}
+class ClientHandler {
+  + run(): void
+  - handleRequest(Request): Response
+}
+class DBConnection {
+  + executeUpdate(String): boolean
+  + close(Connection, Statement, ResultSet): void
+  + connect(): void
+  + executeInsert(String): Long
+   instance: DBConnection
+}
+class FrontController {
+  + update(T): void
+  - getController(Class<T>): AbstractController<Entity>
+  + delete(T): void
+  + getAll(T): List<Entity>
+  + add(T): void
+   instance: FrontController
+}
+interface InputValue << interface >> {
+   value: String
+}
+class Main {
+  + main(String[]): void
+}
+class MainForm {
+  - initComponents(): void
+  - dbConfigurationMenuItemActionPerformed(ActionEvent): void
+  - populatePanel(): void
+   activeSession: Session
+}
+class NotNullValidator {
+  + validate(Object): void
+}
+class PanelController {
+  + updatePanel(String): void
+   container: JPanel
+   instance: PanelController
+}
+class PanelNames
+class PasswordInputField {
+  - initComponents(): void
+   text: String
+   value: String
+}
+class QuestionController {
+  + delete(Question): void
+  + getAll(Question): List<Question>
+  + save(Question): void
+  + update(Question): void
+   instance: QuestionController
+}
+class QuestionRepository {
+   instance: QuestionRepository
+}
+class QuestionService {
+  + loadQuizQuestions(Question): List<Question>
+  + updateQuestion(Question): void
+  + createQuestion(Question): void
+   instance: QuestionService
+}
+class QuizController {
+  + getAll(Quiz): List<Quiz>
+  + update(Quiz): void
+  + findQuiz(List<Quiz>, int): List<Quiz>
+  + save(Quiz): void
+  + delete(Quiz): void
+   instance: QuizController
+}
+class QuizRepository {
+   instance: QuizRepository
+}
+class QuizService {
+  + deleteQuiz(Quiz): void
+  + updateQuiz(Quiz): void
+  + findQuiz(List<Quiz>, Object): List<Quiz>
+  + createQuiz(Quiz): void
+  + loadQuizzesList(Quiz): List<Quiz>
+  + loadQuiz(Quiz): Quiz
+   instance: QuizService
+}
+interface RepositoryInterface<T> << interface >> {
+  + update(Entity): boolean
+  + getById(T): T
+  + save(Entity): Long
+  + findBy(Entity, String): List<T>
+  + delete(Entity): boolean
+  + getAll(T): List<T>
+}
+interface RequestHandler << interface >> {
+  + handle(Request, Response): void
+}
+class RequestHandlerRegistry {
+  - createGetLoggedInHandler(): RequestHandler
+  - createLogOutHandler(): RequestHandler
+  - createFindAllHandler(): RequestHandler
+  - createLoginHandler(): RequestHandler
+  - createDeleteHandler(): RequestHandler
+  + getHandler(RequestType): RequestHandler
+  - createUpdateHandler(): RequestHandler
+  - createSaveHandler(): RequestHandler
+}
+class Server {
+  + run(): void
+  + shutdown(): void
+   shuttingDown: boolean
+   serverSocket: ServerSocket
+}
+class ServerApplication {
+  + run(): void
+}
+class Session {
+   creationTime: long
+   lastAccessedTime: long
+   admin: Administrator
+   sessionId: String
+}
+class SessionManager {
+  + invalidateSession(String): void
+  + isValidSession(String): boolean
+  + getSession(String): Session
+  + createSession(Administrator): Session
+  + isSessionValid(Request): boolean
+   instance: SessionManager
+}
+class SettingsPanel {
+  - preparePanel(): void
+  - initComponents(): void
+  - restoreDefaultBtnActionPerformed(ActionEvent): void
+  - backBtnActionPerformed(ActionEvent): void
+  - saveProperties(String, String, String): void
+  - saveBtnActionPerformed(ActionEvent): void
+  + loadProperties(): Properties
+}
+class StartPanel {
+  - startServerBtnActionPerformed(ActionEvent): void
+  - initComponents(): void
+  - stopServerBtnActionPerformed(ActionEvent): void
+}
+class TextInputField {
+  - initComponents(): void
+   text: String
+   value: String
+}
+class TextValidator {
+  + validate(Object): void
+}
+class TournamentController {
+  + findTournament(List<Tournament>, Object): List<Tournament>
+  + save(Tournament): void
+  + update(Tournament): void
+  + delete(Tournament): void
+  + getAll(Tournament): List<Tournament>
+   instance: TournamentController
+}
+class TournamentRepository {
+   instance: TournamentRepository
+}
+class TournamentRoundController {
+  + update(TournamentRound): void
+  + delete(TournamentRound): void
+  + save(TournamentRound): void
+  + getAll(TournamentRound): List<TournamentRound>
+   instance: TournamentRoundController
+}
+class TournamentRoundRepository {
+   instance: TournamentRoundRepository
+}
+class TournamentRoundService {
+  + loadTournamentRounds(TournamentRound): List<TournamentRound>
+  + updateTournamentRound(TournamentRound): void
+  + createTournamentRound(TournamentRound): void
+   instance: TournamentRoundService
+}
+class TournamentService {
+  + loadTournamentsList(Tournament): List<Tournament>
+  + createTournament(Tournament): void
+  + loadTournament(Tournament): Tournament
+  + updateTournament(Tournament): void
+  + deleteTournament(Tournament): void
+  + findTournament(List<Tournament>, Object): List<Tournament>
+   instance: TournamentService
+}
+interface Validator << interface >> {
+  + validate(Object): void
+}
+
+AbstractRepository        "1" *-[#595959,plain]-> "dbConnection\n1" DBConnection              
+AbstractRepository         -[#008200,dashed]-^  RepositoryInterface       
+AuthenticationController   -[#008200,dashed]-^  AbstractController        
+AuthenticationController  "1" *-[#595959,plain]-> "authenticationService\n1" AuthenticationService     
+AuthenticationRepository   -[#000082,plain]-^  AbstractRepository        
+AuthenticationService     "1" *-[#595959,plain]-> "authenticationRepository\n1" AuthenticationRepository  
+ClientHandler             "1" *-[#595959,plain]-> "server\n1" Server                    
+FrontController           "1" *-[#595959,plain]-> "controllers\n*" AbstractController        
+MainForm                  "1" *-[#595959,plain]-> "activeSession\n1" Session                   
+MainForm                   -[#595959,dashed]->  SettingsPanel             : "«create»"
+MainForm                   -[#595959,dashed]->  StartPanel                : "«create»"
+NotNullValidator           -[#008200,dashed]-^  Validator                 
+PasswordInputField         -[#008200,dashed]-^  InputValue                
+PasswordInputField        "1" *-[#595959,plain]-> "validator\n1" Validator                 
+QuestionController         -[#008200,dashed]-^  AbstractController        
+QuestionController        "1" *-[#595959,plain]-> "questionService\n1" QuestionService           
+QuestionRepository         -[#000082,plain]-^  AbstractRepository        
+QuestionService           "1" *-[#595959,plain]-> "questionRepository\n1" QuestionRepository        
+QuizController             -[#008200,dashed]-^  AbstractController        
+QuizController            "1" *-[#595959,plain]-> "quizService\n1" QuizService               
+QuizRepository             -[#000082,plain]-^  AbstractRepository        
+QuizService               "1" *-[#595959,plain]-> "questionService\n1" QuestionService           
+QuizService               "1" *-[#595959,plain]-> "quizRepository\n1" QuizRepository            
+RequestHandlerRegistry    "1" *-[#595959,plain]-> "handlers\n*" RequestHandler            
+Server                     -[#595959,dashed]->  ClientHandler             : "«create»"
+ServerApplication          -[#595959,dashed]->  MainForm                  : "«create»"
+SessionManager            "1" *-[#595959,plain]-> "sessions\n*" Session                   
+SessionManager             -[#595959,dashed]->  Session                   : "«create»"
+SettingsPanel             "1" *-[#595959,plain]-> "passwordField\n1" PasswordInputField        
+SettingsPanel              -[#595959,dashed]->  PasswordInputField        : "«create»"
+SettingsPanel              -[#595959,dashed]->  TextInputField            : "«create»"
+SettingsPanel             "1" *-[#595959,plain]-> "databaseNameField\n1" TextInputField            
+StartPanel                "1" *-[#595959,plain]-> "server\n1" Server                    
+StartPanel                 -[#595959,dashed]->  Server                    : "«create»"
+TextInputField             -[#008200,dashed]-^  InputValue                
+TextInputField             -[#595959,dashed]->  NotNullValidator          : "«create»"
+TextInputField            "1" *-[#595959,plain]-> "validator\n1" Validator                 
+TextValidator              -[#008200,dashed]-^  Validator                 
+TournamentController       -[#008200,dashed]-^  AbstractController        
+TournamentController      "1" *-[#595959,plain]-> "tournamentService\n1" TournamentService         
+TournamentRepository       -[#000082,plain]-^  AbstractRepository        
+TournamentRoundController  -[#008200,dashed]-^  AbstractController        
+TournamentRoundController "1" *-[#595959,plain]-> "tournamentRoundService\n1" TournamentRoundService    
+TournamentRoundRepository  -[#000082,plain]-^  AbstractRepository        
+TournamentRoundService    "1" *-[#595959,plain]-> "tournamentRoundRepository\n1" TournamentRoundRepository 
+TournamentService         "1" *-[#595959,plain]-> "tournamentRepository\n1" TournamentRepository      
+TournamentService         "1" *-[#595959,plain]-> "tournamentRoundService\n1" TournamentRoundService    
+@enduml

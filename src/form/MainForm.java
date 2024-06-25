@@ -6,18 +6,16 @@ package form;
 
 import java.awt.CardLayout;
 import session.Session;
-import components.IView;
 import components.SettingsPanel;
 import components.StartPanel;
 import controller.PanelController;
-import session.SessionManager;
 import utils.PanelNames;
 
 /**
  *
  * @author Gazi
  */
-public class MainForm extends javax.swing.JFrame implements IView {
+public class MainForm extends javax.swing.JFrame {
 
     private static Session activeSession;
 
@@ -110,10 +108,7 @@ public class MainForm extends javax.swing.JFrame implements IView {
         activeSession = aActiveSession;
     }
 
-    @Override
-    public void updateView() {
 
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu connectionMenu;
     private javax.swing.JPanel container;

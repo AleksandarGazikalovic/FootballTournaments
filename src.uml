@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>D:/FON/ProjektovanjeSoftvera/FootballTournaments/src</OriginalElement>
+  <nodes>
+    <node x="1536.760802422172" y="374.74660418740933">components.PasswordInputField</node>
+    <node x="701.239197577828" y="1169.6669404497752">controller.QuestionController</node>
+    <node x="1081.5" y="166.59316774002951">components.StartPanel</node>
+    <node x="732.1076579310345" y="1739.039372809595">repository.QuestionRepository</node>
+    <node x="334.8216225979347" y="1157.6669404497752">controller.QuizController</node>
+    <node x="1544.260802422172" y="530.4040743820091">components.TextInputField</node>
+    <node x="728.1076579310345" y="1919.921680455772">repository.AbstractRepository</node>
+    <node x="224.71564440179895" y="896.6573269685157">controller.FrontController</node>
+    <node x="2263.4799568215894" y="1236.6669404497752">utils.PanelNames</node>
+    <node x="1922.8536055457298" y="581.4040743820091">validator.impl.NotNullValidator</node>
+    <node x="718.5" y="-86.02166971935003">server.Server</node>
+    <node x="1144.0" y="-195.54333943870017">server.ServerApplication</node>
+    <node x="350.90193501649173" y="1764.5295591244374">repository.QuizRepository</node>
+    <node x="668.0485143518309" y="404.4803026821621">server.RequestHandler</node>
+    <node x="660.739197577828" y="1448.5148822308845">service.QuestionService</node>
+    <node x="1023.0000000000001" y="-86.02166971935003">form.MainForm</node>
+    <node x="393.4413820929534" y="1929.5294116221876">repository.RepositoryInterface</node>
+    <node x="701.239197577828" y="896.6573269685157">controller.AbstractController</node>
+    <node x="1535.3756432732644" y="-83.02166971935003">session.Session</node>
+    <node x="1099.3920699970015" y="1930.421680455772">connection.DBConnection</node>
+    <node x="1521.8075421211227" y="129.09316774002951">session.SessionManager</node>
+    <node x="1143.3920699970015" y="1763.157013829085">repository.TournamentRepository</node>
+    <node x="1582.1665092413796" y="1445.5295796581709">service.TournamentRoundService</node>
+    <node x="1072.0" y="404.4803026821621">components.SettingsPanel</node>
+    <node x="2016.2544011994005" y="1193.6669404497752">controller.PanelController</node>
+    <node x="298.03730806720023" y="1431.2599830884558">service.QuizService</node>
+    <node x="1054.4410870884558" y="1425.7847662728636">service.TournamentService</node>
+    <node x="1765.3072039839508" y="467.40407438200907">components.InputValue</node>
+    <node x="-112.5" y="1497.0982497871064">service.AuthenticationService</node>
+    <node x="693.5" y="216.05924412263818">server.ClientHandler</node>
+    <node x="-121.0" y="1157.6669404497752">controller.AuthenticationController</node>
+    <node x="1582.1665092413796" y="1169.6669404497752">controller.TournamentRoundController</node>
+    <node x="1622.529276785607" y="1763.157013829085">repository.TournamentRoundRepository</node>
+    <node x="933.9506749025489" y="-195.54333943870017">main.Main</node>
+    <node x="2124.9188184193517" y="476.0406964692684">validator.Validator</node>
+    <node x="651.739197577828" y="568.9013612416861">server.RequestHandlerRegistry</node>
+    <node x="1922.8536055457296" y="359.7486210610193">validator.impl.TextValidator</node>
+    <node x="1041.6567725577213" y="1157.6669404497752">controller.TournamentController</node>
+    <node x="-105.53921367316343" y="1764.5295591244374">repository.AuthenticationRepository</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="session.SessionManager" target="session.Session" relationship="TO_MANY">
+      <point x="-141.99954212112266" y="-1.6774002952502087E-4" />
+      <point x="1488.0" y="222.093" />
+      <point x="1488.0" y="-15.521999999999998" />
+      <point x="-95.99964327326438" y="-3.3028064996898365E-4" />
+    </edge>
+    <edge source="server.RequestHandlerRegistry" target="server.RequestHandler" relationship="TO_MANY">
+      <point x="-21.190683225997077" y="-115.5" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="repository.AbstractRepository" target="repository.RepositoryInterface" relationship="REALIZATION">
+      <point x="-117.5" y="9.607731166415533" />
+      <point x="118.0" y="0.0" />
+    </edge>
+    <edge source="repository.QuizRepository" target="repository.AbstractRepository" relationship="GENERALIZATION">
+      <point x="6.498350825268062E-5" y="31.500440875562617" />
+      <point x="450.402" y="1857.0" />
+      <point x="846.6470025067466" y="1857.0" />
+      <point x="846.6470025067466" y="1888.0" />
+      <point x="845.608" y="1888.0" />
+      <point x="3.420689654376474E-4" y="-91.49968045577202" />
+    </edge>
+    <edge source="repository.TournamentRoundRepository" target="repository.AbstractRepository" relationship="GENERALIZATION">
+      <point x="-2.7678560695676424E-4" y="31.499986170915008" />
+      <point x="1765.029" y="1857.0" />
+      <point x="846.6470025067466" y="1857.0" />
+      <point x="846.6470025067466" y="1888.0" />
+      <point x="845.608" y="1888.0" />
+      <point x="3.420689654376474E-4" y="-91.49968045577202" />
+    </edge>
+    <edge source="components.SettingsPanel" target="components.TextInputField" relationship="CREATE">
+      <point x="189.5" y="94.42377169984695" />
+      <point x="-95.0" y="15.0" />
+    </edge>
+    <edge source="components.TextInputField" target="components.InputValue" relationship="REALIZATION">
+      <point x="95.00019757782798" y="-7.438200907472492E-5" />
+      <point x="1750.0" y="587.404" />
+      <point x="1750.0" y="511.5" />
+      <point x="-67.00020398395077" y="12.595925617990929" />
+    </edge>
+    <edge source="service.AuthenticationService" target="repository.AuthenticationRepository" relationship="TO_ONE">
+      <point x="-8.039213673163431" y="81.0" />
+      <point x="0.0" y="-45.0" />
+    </edge>
+    <edge source="controller.TournamentRoundController" target="controller.AbstractController" relationship="REALIZATION">
+      <point x="4.907586203444225E-4" y="-80.9999404497753" />
+      <point x="1766.667" y="1121.0" />
+      <point x="815.239" y="1121.0" />
+      <point x="-1.9757782797569234E-4" y="67.49967303148424" />
+    </edge>
+    <edge source="components.SettingsPanel" target="components.PasswordInputField" relationship="TO_ONE">
+      <point x="189.5" y="-76.23369849475279" />
+      <point x="-102.5" y="0.0" />
+    </edge>
+    <edge source="components.StartPanel" target="server.Server" relationship="TO_ONE">
+      <point x="-180.0" y="-1.6774002952502087E-4" />
+      <point x="991.0" y="222.093" />
+      <point x="991.0" y="-17.022" />
+      <point x="107.5" y="-3.3028064996898365E-4" />
+    </edge>
+    <edge source="service.QuestionService" target="repository.QuestionRepository" relationship="TO_ONE">
+      <point x="18.8684603532065" y="69.0" />
+      <point x="0.0" y="-31.5" />
+    </edge>
+    <edge source="controller.TournamentController" target="controller.AbstractController" relationship="REALIZATION">
+      <point x="2.274422786285868E-4" y="-92.9999404497753" />
+      <point x="1263.657" y="1121.0" />
+      <point x="815.239" y="1121.0" />
+      <point x="-1.9757782797569234E-4" y="67.49967303148424" />
+    </edge>
+    <edge source="repository.AbstractRepository" target="connection.DBConnection" relationship="TO_ONE">
+      <point x="117.5" y="0.0" />
+      <point x="-167.0" y="0.0" />
+    </edge>
+    <edge source="controller.QuestionController" target="service.QuestionService" relationship="TO_ONE">
+      <point x="-1.9757782797569234E-4" y="81.0000595502247" />
+      <point x="-1.9757782797569234E-4" y="-68.9998822308844" />
+    </edge>
+    <edge source="controller.QuestionController" target="controller.AbstractController" relationship="REALIZATION">
+      <point x="-1.9757782797569234E-4" y="-80.9999404497753" />
+      <point x="826.739" y="1121.0" />
+      <point x="815.239" y="1121.0" />
+      <point x="-1.9757782797569234E-4" y="67.49967303148424" />
+    </edge>
+    <edge source="form.MainForm" target="components.StartPanel" relationship="CREATE">
+      <point x="23.0" y="69.0" />
+      <point x="0.0" y="-55.5" />
+    </edge>
+    <edge source="validator.impl.NotNullValidator" target="validator.Validator" relationship="REALIZATION">
+      <point x="82.00039445427001" y="-31.500074382009075" />
+      <point x="2094.354" y="462.0" />
+      <point x="2132.419" y="462.0" />
+      <point x="-81.99981841935187" y="-31.49969646926843" />
+    </edge>
+    <edge source="controller.QuizController" target="service.QuizService" relationship="TO_ONE">
+      <point x="-24.78431453073449" y="93.0" />
+      <point x="0.0" y="-105.0" />
+    </edge>
+    <edge source="form.MainForm" target="components.SettingsPanel" relationship="CREATE">
+      <point x="215.5" y="16.49966971935003" />
+      <point x="1471.5" y="-0.5219999999999985" />
+      <point x="1471.5" y="416.74660418740933" />
+      <point x="189.5" y="-91.23369849475279" />
+    </edge>
+    <edge source="repository.QuestionRepository" target="repository.AbstractRepository" relationship="GENERALIZATION">
+      <point x="3.420689654376474E-4" y="31.499627190404908" />
+      <point x="845.608" y="1857.0" />
+      <point x="846.6470025067466" y="1857.0" />
+      <point x="846.6470025067466" y="1888.0" />
+      <point x="845.608" y="1888.0" />
+      <point x="3.420689654376474E-4" y="-91.49968045577202" />
+    </edge>
+    <edge source="components.SettingsPanel" target="components.PasswordInputField" relationship="CREATE">
+      <point x="189.5" y="-61.23369849475279" />
+      <point x="-102.5" y="15.0" />
+    </edge>
+    <edge source="repository.TournamentRepository" target="repository.AbstractRepository" relationship="GENERALIZATION">
+      <point x="-6.999700144660892E-5" y="31.499986170915008" />
+      <point x="1266.392" y="1857.0" />
+      <point x="846.6470025067466" y="1857.0" />
+      <point x="846.6470025067466" y="1888.0" />
+      <point x="845.608" y="1888.0" />
+      <point x="3.420689654376474E-4" y="-91.49968045577202" />
+    </edge>
+    <edge source="components.PasswordInputField" target="validator.Validator" relationship="TO_ONE">
+      <point x="102.50019757782798" y="-16.49760418740931" />
+      <point x="1798.308" y="415.249" />
+      <point x="1798.308" y="446.0" />
+      <point x="2214.419" y="446.0" />
+      <point x="1.8158064813178498E-4" y="-31.49969646926843" />
+    </edge>
+    <edge source="service.TournamentRoundService" target="repository.TournamentRoundRepository" relationship="TO_ONE">
+      <point x="-57.63723245577262" y="69.0" />
+      <point x="0.0" y="-31.5" />
+    </edge>
+    <edge source="validator.impl.TextValidator" target="validator.Validator" relationship="REALIZATION">
+      <point x="3.944542704630294E-4" y="31.500378938980703" />
+      <point x="2012.354" y="462.0" />
+      <point x="2132.419" y="462.0" />
+      <point x="-81.99981841935187" y="-31.49969646926843" />
+    </edge>
+    <edge source="components.PasswordInputField" target="components.InputValue" relationship="REALIZATION">
+      <point x="1.9757782797569234E-4" y="57.00039581259068" />
+      <point x="1639.261" y="512.904" />
+      <point x="1750.0" y="512.904" />
+      <point x="1750.0" y="511.5" />
+      <point x="-67.00020398395077" y="12.595925617990929" />
+    </edge>
+    <edge source="form.MainForm" target="session.Session" relationship="TO_ONE">
+      <point x="215.5" y="-3.3028064996898365E-4" />
+      <point x="1488.0" y="-17.022" />
+      <point x="1488.0" y="-15.521999999999998" />
+      <point x="-95.99964327326438" y="-3.3028064996898365E-4" />
+    </edge>
+    <edge source="controller.AuthenticationController" target="service.AuthenticationService" relationship="TO_ONE">
+      <point x="0.0" y="117.0" />
+      <point x="0.0" y="-81.0" />
+    </edge>
+    <edge source="controller.AuthenticationController" target="controller.AbstractController" relationship="REALIZATION">
+      <point x="0.0" y="-116.9999404497753" />
+      <point x="33.5" y="1121.0" />
+      <point x="815.239" y="1121.0" />
+      <point x="-1.9757782797569234E-4" y="67.49967303148424" />
+    </edge>
+    <edge source="repository.AuthenticationRepository" target="repository.AbstractRepository" relationship="GENERALIZATION">
+      <point x="2.1367316342946197E-4" y="45.00044087556262" />
+      <point x="25.461" y="1888.0" />
+      <point x="845.608" y="1888.0" />
+      <point x="3.420689654376474E-4" y="-91.49968045577202" />
+    </edge>
+    <edge source="service.TournamentService" target="service.TournamentRoundService" relationship="TO_ONE">
+      <point x="-8.708845575711166E-5" y="-104.99976627286355" />
+      <point x="1276.441" y="1385.0" />
+      <point x="1822.667" y="1385.0" />
+      <point x="4.907586203444225E-4" y="-68.99957965817089" />
+    </edge>
+    <edge source="components.SettingsPanel" target="components.TextInputField" relationship="TO_ONE">
+      <point x="189.5" y="79.42377169984695" />
+      <point x="-95.0" y="0.0" />
+    </edge>
+    <edge source="service.QuizService" target="service.QuestionService" relationship="TO_ONE">
+      <point x="150.4996919327998" y="1.6911544207687257E-5" />
+      <point x="621.941" y="1536.26" />
+      <point x="621.941" y="1425.0" />
+      <point x="826.739" y="1425.0" />
+      <point x="-1.9757782797569234E-4" y="-68.9998822308844" />
+    </edge>
+    <edge source="components.StartPanel" target="server.Server" relationship="CREATE">
+      <point x="-180.0" y="-23.533923617391338" />
+      <point x="841.0" y="198.55924412263818" />
+      <point x="15.0" y="69.0" />
+    </edge>
+    <edge source="controller.TournamentRoundController" target="service.TournamentRoundService" relationship="TO_ONE">
+      <point x="4.907586203444225E-4" y="81.0000595502247" />
+      <point x="1766.667" y="1385.0" />
+      <point x="1822.667" y="1385.0" />
+      <point x="4.907586203444225E-4" y="-68.99957965817089" />
+    </edge>
+    <edge source="server.ClientHandler" target="server.Server" relationship="TO_ONE">
+      <point x="132.5" y="-2.441226381506567E-4" />
+      <point x="991.0" y="259.559" />
+      <point x="991.0" y="-17.022" />
+      <point x="107.5" y="-3.3028064996898365E-4" />
+    </edge>
+    <edge source="components.TextInputField" target="validator.Validator" relationship="TO_ONE">
+      <point x="95.00019757782798" y="-23.500074382009075" />
+      <point x="2045.5" y="563.904" />
+      <point x="2045.5" y="446.0" />
+      <point x="2214.419" y="446.0" />
+      <point x="1.8158064813178498E-4" y="-31.49969646926843" />
+    </edge>
+    <edge source="service.QuizService" target="repository.QuizRepository" relationship="TO_ONE">
+      <point x="1.8646269492915053" y="105.0" />
+      <point x="0.0" y="-31.5" />
+    </edge>
+    <edge source="service.TournamentService" target="repository.TournamentRepository" relationship="TO_ONE">
+      <point x="-10.049017091454289" y="105.0" />
+      <point x="0.0" y="-31.5" />
+    </edge>
+    <edge source="controller.TournamentController" target="service.TournamentService" relationship="TO_ONE">
+      <point x="-2.215772557721266" y="93.0" />
+      <point x="-15.000087088455757" y="-105.0" />
+    </edge>
+    <edge source="controller.QuizController" target="controller.AbstractController" relationship="REALIZATION">
+      <point x="3.774020652826948E-4" y="-92.9999404497753" />
+      <point x="473.322" y="1121.0" />
+      <point x="815.239" y="1121.0" />
+      <point x="-1.9757782797569234E-4" y="67.49967303148424" />
+    </edge>
+    <edge source="server.Server" target="server.ClientHandler" relationship="CREATE">
+      <point x="0.0" y="69.0" />
+      <point x="0.0" y="-43.5" />
+    </edge>
+    <edge source="session.SessionManager" target="session.Session" relationship="CREATE">
+      <point x="-32.43189884785829" y="-93.0" />
+      <point x="0.0" y="67.5" />
+    </edge>
+    <edge source="server.ServerApplication" target="form.MainForm" relationship="CREATE">
+      <point x="0.0" y="31.5" />
+      <point x="0.0" y="-69.0" />
+    </edge>
+    <edge source="controller.FrontController" target="controller.AbstractController" relationship="TO_MANY">
+      <point x="188.5" y="-25.5" />
+      <point x="-114.0" y="0.0" />
+    </edge>
+    <edge source="components.TextInputField" target="validator.impl.NotNullValidator" relationship="CREATE">
+      <point x="95.0" y="25.5" />
+      <point x="-89.5" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.4474828252468872" showDependencies="true" x="1177.500929535232" y="160.45361319340304" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
